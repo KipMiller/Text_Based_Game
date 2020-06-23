@@ -107,7 +107,7 @@ public class Input{
       if(userInput.equals("Quit") || userInput.equals("Close")){
          System.exit(0);//close the entire game 
       } else if(userInput.equals("Help") || userInput.equals("help")){
-         textArea.append("Basic controls:\n'Inventory' - See what you are holding.\n'Look' - Examine a specific object closer.\n'Location' - Display your current location.\n'Open door' - Attempt to open a door.\n'Go' - Attempt to move from your current location.\n'Grab' - Place an item in your inventory.");
+         textArea.append("Basic controls:\n'Inventory' - See what you are holding.\n'Look' - Examine a specific object closer.\n'Location' - Display your current location.\n'Open door' - Attempt to open a door.\n'Go' - Attempt to move from your current location.\n'Grab' - Place an item in your inventory.\n'Unlock' - Attempt to unlock a specified room with a key in your inventory.\n ");
       }
       else if(userInput.equals("Inventory") || userInput.equals("inventory")){
          playerInventory.checkInventory();
@@ -119,9 +119,15 @@ public class Input{
       } else if(userInput.equals("Open door")){
          // Open a door 
       } else if(userInput.contains("Go")){
-         go(textArea, userInput.substring(3));
-      } else if(userInput.equals("Grab")){
-         // grab something
+         if(userInput.length() <= 2){
+            textArea.append("I need to know where to go.\n");      
+         } else {
+            go(textArea, userInput.substring(3));
+         }
+      } else if(userInput.contains("Grab")){
+         grab(textArea,userInput.substring(5));
+      } else if (userInput.contains("Unlock")){
+         unlock(textArea, userInput.substring(7));
       }
       
       
@@ -144,21 +150,7 @@ public class Input{
             location = "TV";
             changeFrame(textArea, "tv.jpg", "You walk back into the dirty TV room. \n");
       }     
-      
-      // KITCHEN
-      else if(userInput.equals("Kitchen") && (location.equals("TV") || location.equals("Hall"))){
-            location = "Kitchen";
-            changeFrame(textArea, "kitchen.jpg", "You walk into the kitchen, it's poorly lit and reeks of decay. A puddle is forming beneath the refridgerator. To your right is the TV room, behind you is a Hall \n");
-      }
-      else if(userInput.equals("Grab gun") && location.equals("Kitchen")){
-            textArea.append("You pick up the gun from the table and tuck it under your belt.\n");
-            playerInventory.gun = 1;
-      }
-      else if(userInput.equals("Grab bullets") && location.equals("Kitchen")){
-            textArea.append("You pick up the bullets and toss them into your pocket.\n");
-            playerInventory.ammo = 7;
-      }
-      
+
       // HALLWAY 
       else if(userInput.equals("Hall") && (location.equals("Kitchen") || location.equals("Bedroom"))){
             location = "Hall";
@@ -177,13 +169,41 @@ public class Input{
       
    }//end of check input 
 
+   public void grab(JTextArea textArea, String userInput){
+      if(map.getLocation(location).isItem(userInput)){
+         textArea.append("You grab " + userInput + " and put it in your pocket.\n");
+         playerInventory.addItem(userInput);
+      } else {
+         textArea.append("I Can't grab that.\n");
+      }
+   
+   }
+   public void unlock(JTextArea textArea, String userInput){
+      //if(map.checkMove(location, userInput, textArea)){// if they are adjacent to the locked room
+         if(map.getLocation(userInput).isLocked()){// if the room is indeed locked
+            if(playerInventory.validKey(userInput)){
+               map.getLocation(userInput).setLocked();
+               textArea.append("You unlocked the " + userInput + " with your key.\n"); 
+            } else {
+               textArea.append("I don't have the key to unlock that door.\n");
+            }
+         } else {
+            textArea.append("That room isn't locked.\n");
+         }
+      
+      //} else {
+      //   textArea.append("I can't unlock that.\n");
+     // }
+      
+   
+   }
 
    public void go(JTextArea textArea, String userInput){
       
       //changeFrame(textArea, "tv.jpg", "You walk back into the dirty TV room. \n");
       System.out.println("Current location = "  + location);
       System.out.println("Destination = " + userInput);
-      if(map.checkMove(location, userInput)){
+      if(map.checkMove(location, userInput, textArea)){
          location = userInput;
          Location temp = map.getLocation(location);
          if(!temp.isVisited()){// if they HAVEN'T been in this room yet

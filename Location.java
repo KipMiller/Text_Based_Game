@@ -3,23 +3,27 @@
 //
 // Location class
 // Holds all locations of the map and keeps track of which are connected to which.
-
+import java.lang.*;
+import java.util.*;
+import java.io.*;
 
 public class Location{
    String name; 
    String[] neighbors;
    String description; 
    String picture;// the name of the jpeg
+   ArrayList<String> items; 
    boolean visited;
    boolean locked;
    
-   public Location(String name, String[] neighbors,String description, boolean visited, boolean locked, String picture){
+   public Location(String name, String[] neighbors,String description, boolean visited, boolean locked, String picture, ArrayList<String> items){
       this.name = name;
       this.neighbors = neighbors;   
       this.description = description;
       this.visited = visited;  
       this.locked = locked;
       this.picture = picture;
+      this.items = items;
    }
    
    // Check to see if the target location is connected to the current location (IE a neighbor)
@@ -30,6 +34,18 @@ public class Location{
             return true;
          }
       
+      }
+      return false;
+   }
+   
+   
+   // Return true or false if the item the player wants to pick up is valid or not
+   public boolean isItem(String item){
+      for(int i = 0; i < items.size(); i++){
+         if(items.get(i).equals(item)){
+            items.remove(i);// get rid of that item from the room
+            return true;
+         }
       }
       return false;
    }

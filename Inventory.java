@@ -21,7 +21,7 @@ public class Inventory {
       // items of the players inventory 
       public static int ammo; 
       public static int health;
-      public static int keys;
+      public static ArrayList<String> keys;
       public static int flashlight;
       public static int batteries;
       public static int gun; 
@@ -30,36 +30,53 @@ public class Inventory {
       Inventory(){// default constructor for the inventory class 
             ammo = 0;
             health = 10;
-            keys = 0;
             flashlight = 0;
             batteries = 0;
             gun = 0;
+            keys = new ArrayList<String>();
       }
       
-      Inventory(int ammo,int health,int keys,int flashlight,int batteries,int gun){// constructor used to carry over inventory between chapters/set inventory numbers
+      Inventory(int ammo,int health ,int flashlight,int batteries,int gun){// constructor used to carry over inventory between chapters/set inventory numbers
             this.ammo = ammo;
             this.health = health;
-            this.keys = keys;
             this.flashlight = flashlight;
             this.batteries = batteries; 
             this.gun = gun; 
+            keys = new ArrayList<String>();
       }
 
       public void reset(){// function to reset inventory to starting values 
             ammo = 0;
             health = 10;
-            keys = 0;
             flashlight = 0;
             batteries = 0;
             gun = 0;
       }
+      
+      public void addItem(String item){
+         keys.add(item);
+      
+      }
+
+      // given our targeted room, if we have a key that can open that door, return true and remove the key
+      public boolean validKey(String destination){
+         for(int i = 0; i < keys.size(); i++){
+            if(keys.get(i).contains(destination)){
+               keys.remove(i);
+               return true;
+               
+            }
+         }
+         return false; 
+      }
+      
       
       public void makeString(){
             inventoryString = ("\t" + "Health: " + health + "\n");
             if(ammo != 0){
                   inventoryString += ("\t" + "Ammo: " + ammo + "\n");
             }
-            if(keys != 0){
+            if(keys.size() != 0){
                   inventoryString += ("\t" + "Keys: " + keys + "\n");
             }
             if(flashlight != 0){

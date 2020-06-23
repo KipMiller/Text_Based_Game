@@ -23,11 +23,28 @@ public class Episode1 {
       //public static Inventory playerInventory = new Inventory(2, 7, 4, 3, 2, 1);
       // the main function, called upon clicking the 'Episode 2' button at the main menu
       public static void main(String[] args){
-            Map theMap = new Map();
+            
             
             int choice = 0;// the players choice 
             String location = "Bedroom";// the current location of the player
             Inventory playerInventory = new Inventory();
+            ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
+            
+            ArrayList<String> temp = new ArrayList<String>();
+            temp.add("");
+            
+            items.add(temp);
+            
+            
+            ArrayList<String> kitchen = new ArrayList<String>();
+            kitchen.add("Garage Key");
+            kitchen.add("Ammo");
+            
+            items.add(kitchen);
+            
+            
+            
+            Map theMap = new Map(items);
             Input input = new Input("Day 1", playerInventory, location, theMap); 
             
             
