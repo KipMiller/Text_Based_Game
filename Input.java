@@ -118,6 +118,7 @@ public class Input{
          textArea.append(location);
       } else if(userInput.equals("Open door")){
          // Open a door 
+         // TODO: ? 
       } else if(userInput.contains("Go")){
          if(userInput.length() <= 2){
             textArea.append("I need to know where to go.\n");      
@@ -141,28 +142,6 @@ public class Input{
          
       }
       */
-
-      /*
-      //Location based input 
-      
-      // TV ROOM 
-      else if(userInput.equals("TV") && location.equals("Kitchen")){
-            location = "TV";
-            changeFrame(textArea, "tv.jpg", "You walk back into the dirty TV room. \n");
-      }     
-
-      // HALLWAY 
-      else if(userInput.equals("Hall") && (location.equals("Kitchen") || location.equals("Bedroom"))){
-            location = "Hall";
-            changeFrame(textArea, "hallway.jpg", "You walk into the dimly lit hallway. Behind you is the kitchen, there are two doors to your left and right, and a door before you slightly open. \n");
-      }
-            
-      // BEDROOM 
-      else if(userInput.equals("Open door") && location.equals("Hall")){
-            location = "Bedroom";
-            changeFrame(textArea, "bedroom.jpg", "You slowly push open the door and step inside. Its a small bedroom barely big enough to fit a bed, nightstand, and a closet. Behind you is the way back into the Hall. \n");
-      } 
-      */
       
       else // If the user enters something we don't recognize 
          textArea.append( "I can't \"" + userInput + "\"\n");
@@ -176,49 +155,76 @@ public class Input{
       } else {
          textArea.append("I Can't grab that.\n");
       }
-   
    }
-   public void unlock(JTextArea textArea, String userInput){
-      //if(map.checkMove(location, userInput, textArea)){// if they are adjacent to the locked room
-         if(map.getLocation(userInput).isLocked()){// if the room is indeed locked
-            if(playerInventory.validKey(userInput)){
-               map.getLocation(userInput).setLocked();
-               textArea.append("You unlocked the " + userInput + " with your key.\n"); 
-            } else {
-               textArea.append("I don't have the key to unlock that door.\n");
-            }
-         } else {
-            textArea.append("That room isn't locked.\n");
-         }
-      
-      //} else {
-      //   textArea.append("I can't unlock that.\n");
-     // }
-      
    
+   
+   
+   public void unlock(JTextArea textArea, String userInput){
+      if(location.equals("Living Room")){// The kithen door from the living room doesn't need a key to be unlocked
+         map.getLocation(location).setLocked();
+         textArea.append("You turn the doorknob and hear a click, the door to the kitchen is now unlocked.\n");
+      } else if(location.equals("Master Bedroom")){
+         map.getLocation(location).setLocked();
+         textArea.append("You turn the doorknob and hear a click, the door leading to the upper hall is now unlocked.\n");
+      } else if(map.getLocation(userInput).isLocked()){// if the room is indeed locked
+         if(playerInventory.validKey(userInput)){
+            map.getLocation(userInput).setLocked();
+            textArea.append("You unlocked the " + userInput + " with your key.\n"); 
+         } else {
+            textArea.append("I don't have the key to unlock that door.\n");
+         }
+      } else {
+         textArea.append("That room isn't locked.\n");
+      }
+   }
+
+   // Checks to see if the player has been in this room before, if not update the map, if they have print a simple return message
+   public void update(JTextArea textArea){
+      Location temp = map.getLocation(location);
+      if(!temp.isVisited()){// if they HAVEN'T been in this room yet
+         temp.setVisited();// indicate they have now visited this room
+         changeFrame(textArea, temp.getPicture(), temp.getDescription());// then change the picture and text 
+      } else {
+         textArea.append("You are now back in the " + location + "\n");// else if they have been here before, just say their location
+      }
    }
 
    public void go(JTextArea textArea, String userInput){
-      
-      //changeFrame(textArea, "tv.jpg", "You walk back into the dirty TV room. \n");
-      System.out.println("Current location = "  + location);
-      System.out.println("Destination = " + userInput);
-      if(map.checkMove(location, userInput, textArea)){
-         location = userInput;
-         Location temp = map.getLocation(location);
-         if(!temp.isVisited()){// if they HAVEN'T been in this room yet
-            temp.setVisited();// indicate they have now visited this room
-            changeFrame(textArea, temp.getPicture(), temp.getDescription());// then change the picture and text 
-         } else {
-            textArea.append("You are now back in the " + userInput + "\n");// else if they have been here before, just say their location
+ 
+      if(userInput.contains("stairs")){
+         stairs(textArea,userInput);
+      } else if(userInput.contains("hole") && location.equals("Garage")){ 
+         location = "Living Room";
+         update(textArea);
+      } else if(userInput.contains("Master Bedroom") && location.equals("Upper Landing")){
+         location = "Master Bedroom";
+         update(textArea);
+         if(episodeNum.equals("Day 1")){
+            Episode1.dayEnd();   
          }
+      }else if(map.checkMove(location, userInput, textArea)){
+         location = userInput;
+         update(textArea);
       
       } else {// if they entered a bad location or something 
          textArea.append("I can't go there.\n");
       }
    }
 
-
+   // Slightly different commands if the user wants to go down/up the two staircases in the map
+   public void stairs(JTextArea textArea, String userInput){
+      
+      if(userInput.contains("down stairs") && location.equals("Upper Hall")){
+         location = "Entrance";
+      } else if(userInput.contains("down stairs") && location.equals("Landing")){
+         location = "Living Room";
+      } else if(userInput.contains("up stairs") && location.equals("Entrance")){
+         location = "Upper Hall";
+      } else if(userInput.contains("up stairs") && location.equals("Living Room")){
+         location = "Upper Landing";
+      } 
+      update(textArea);
+   }
 
    // look command, used to further inspect a location or item in game 
    public static void look(String currLocation, JTextArea textArea){

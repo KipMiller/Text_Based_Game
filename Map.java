@@ -21,7 +21,8 @@ public class Map{
        "????\n","The upper landing, a small room consisting of a staircase leading downwards and a door.\n", 
        // Downstairs
        "The entrance of the house, at the bottom of the stairs lies the front door, to your left is a large room.\n","The formal living room, being a couple sofas and decorated bookshelves.\n","The lower hall is dimly lit and consists of several doors, and a path leading to what looks like a dinging room.\n",
-       "The garage.\n","The Study, BOO.\n", "The lower bathroom.\n", "The dining room.\n","The Pantry.\n","The Kitchen, you see a large bronze colored key sitting on the table, it's on a piece of paper that reads 'Garage Key' written in sharpie.\n", "The living room.\n"};
+       "You enter the garage, a small window across the width of the garage gives off a small amount of grey light.\nThe two car garage is empty, but boxes are stacked up high in the corner opposite you.\nTo your right is a wall lined with tools and to the left of the tool rack is what appears to be a large hole seemingly carved into the wall.\n","The Study, BOO.\n", "The lower bathroom.\n", "The dining room.\n","The Pantry.\n","The Kitchen, you see a large bronze colored key sitting on the table, it's on a piece of paper that reads 'Garage Key' written in sharpie.\n", 
+       "You crawl through the hole and see what appears to be the living room, there is a large television beside the hole you crawled through on the wall. \nA staircase going upwards sits to your left beside a window filling the room with a pale grey light. \nA door stands across the room from you adjacent to a sofa.\n"};
    
       // top floor 
       String[] n1 ={"Upper Hall"};
@@ -42,8 +43,8 @@ public class Map{
       String[] n6 ={"Upper Hall"};
       Location loc6 = new Location("?",n6,descriptions[5],false,true, "MAP.png", items.get(0));
       
-      String[] n7 ={"Master Bedroom"};
-      Location loc7 = new Location("Upper Landing",n7,descriptions[6],false,true, "MAP.png", items.get(0));
+      String[] n7 ={"Master Bedroom", "Living Room"};
+      Location loc7 = new Location("Upper Landing",n7,descriptions[6],false, false, "MAP.png", items.get(0));
       
       
       // bottom floor 
@@ -53,10 +54,10 @@ public class Map{
       String[] n9 ={"Entrance", "Lower Hall"};
       Location loc9 = new Location("Formal Living Room",n9,descriptions[8],false,false, "MAP_bottom_floor_B.png", items.get(0));
       
-      String[] n10 ={"Formal Living Room","Entrance", "Garage", "Study", "Lower Bathroom", "Dining Room"};
+      String[] n10 ={"Formal Living Room","Entrance", "Garage", "Study", "Lower Bathroom", "Dining Room", "Kitchen"};
       Location loc10 = new Location("Lower Hall",n10,descriptions[9],false,false, "MAP_bottom_floor_C.png", items.get(0));
       
-      String[] n11 ={"Lower Hall"};
+      String[] n11 ={"Lower Hall", "Living Room"};
       Location loc11 = new Location("Garage",n11,descriptions[10],false,true, "MAP_bottom_floor_G.png", items.get(0));
       
       String[] n12 ={"Lower Hall"};
@@ -71,10 +72,10 @@ public class Map{
       String[] n15 ={"Dining Room"};
       Location loc15 = new Location("Pantry",n15,descriptions[14],false,true, "MAP_bottom_floor_D.png", items.get(0));
       
-      String[] n16 ={"Dining Room" ,"Living Room"};
+      String[] n16 ={"Dining Room" ,"Living Room", "Lower Hall"};
       Location loc16 = new Location("Kitchen",n16,descriptions[15],false,false, "MAP_bottom_floor_C.png", items.get(1));
       
-      String[] n17 ={"Kitchen"};
+      String[] n17 ={"Kitchen", "Garage", "Upper Landing"};
       Location loc17 = new Location("Living Room",n17,descriptions[16],false,true, "MAP_bottom_floor_F.png", items.get(0));
       
       
