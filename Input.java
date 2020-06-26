@@ -113,7 +113,7 @@ public class Input{
          playerInventory.checkInventory();
       }
       else if(userInput.equals("Look")){
-         look(location, textArea);
+         map.look(location, textArea);
       } else if(userInput.equals("Location")){
          textArea.append(location);
       } else if(userInput.equals("Open door")){
@@ -226,22 +226,6 @@ public class Input{
       update(textArea);
    }
 
-   // look command, used to further inspect a location or item in game 
-   public static void look(String currLocation, JTextArea textArea){
-         if(currLocation.equals("TV")){
-               textArea.append("Upon looking closer, you see a magazine on the table with the numbers '378' scribbled on the back. \n");
-         }
-         if(currLocation.equals("Kitchen")){
-               textArea.append("You see a gun and several bullets lying on the countertop. \n");
-         }
-         if(currLocation.equals("Hall")){
-               textArea.append("It's too dark to see anything but the outline of a door. \n");
-         }
-         if(currLocation.equals("Bedroom")){
-               textArea.append("The bedroom is poorly lit, but it looks like the closet door is cracked open an inch. \n");           
-         }
-
-   }
 
 
 
