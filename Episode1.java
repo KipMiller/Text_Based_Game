@@ -47,7 +47,7 @@ public class Episode1 {
             
             
             String text = "You awake in a small bedroom which is scarcely furnished. You see around you a bed, a closet, and a nighstand. \n";
-            input.makeNewFrame(text, "MAP_top_floor_F.png");// set the background image
+            input.makeNewFrame(text, "map_4.png");// set the background image
       }
       
       public static void dayEnd(){      

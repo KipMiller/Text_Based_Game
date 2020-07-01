@@ -190,7 +190,7 @@ public class Input{
    }
 
    public void go(JTextArea textArea, String userInput){
- 
+      
       if(userInput.contains("stairs")){
          stairs(textArea,userInput);
       } else if(userInput.contains("hole") && location.equals("Garage")){ 
@@ -202,7 +202,60 @@ public class Input{
          if(episodeNum.equals("Day 1")){
             Episode1.dayEnd();   
          }
-      }else if(map.checkMove(location, userInput, textArea)){
+      }else if(userInput.contains("Lower Hall") && !map.getLocation("Lower Hall").isVisited()){// lower hall with either formal living room visited or not 
+         location = userInput;
+         Location temp = map.getLocation(location);
+         temp.setVisited();
+         
+         if(!map.getLocation("Formal Living Room").isVisited()){ // if they go into the hall without going in the formal living room 
+            changeFrame(textArea, "map_7.png", temp.getDescription());
+         } else {
+            changeFrame(textArea, "map_7_A.png", temp.getDescription());
+         }
+      } else if(userInput.contains("Kitchen") && !map.getLocation("Kitchen").isVisited()){
+         location = userInput;
+         Location temp = map.getLocation(location);
+         temp.setVisited();
+         
+         if(!map.getLocation("Formal Living Room").isVisited() && !map.getLocation("Dining Room").isVisited()){// no formal living room OR dining room
+            changeFrame(textArea, "map_8_E.png", temp.getDescription());
+         } else if(!map.getLocation("Formal Living Room").isVisited() && map.getLocation("Dining Room").isVisited()){// no formal living room AND dining room
+            changeFrame(textArea, "map_8_F.png", temp.getDescription());
+         } else if(map.getLocation("Formal Living Room").isVisited() && !map.getLocation("Dining Room").isVisited()){
+            changeFrame(textArea, "map_8_D.png", temp.getDescription());
+         } else{
+            changeFrame(textArea, "map_8_A.png", temp.getDescription());
+         }
+      } else if(userInput.contains("Dining Room") && !map.getLocation("Dining Room").isVisited()){
+         location = userInput;
+         Location temp = map.getLocation(location);
+         temp.setVisited();
+         
+         if(!map.getLocation("Formal Living Room").isVisited() && !map.getLocation("Kitchen").isVisited()){// no kitchen OR formal living room
+            changeFrame(textArea, "map_8_G.png", temp.getDescription());
+         } else if(!map.getLocation("Formal Living Room").isVisited() && map.getLocation("Kitchen").isVisited()){// no formal living room AND kitchen
+            changeFrame(textArea, "map_8_F.png", temp.getDescription());
+         } else if(map.getLocation("Formal Living Room").isVisited() && !map.getLocation("Kitchen").isVisited()){// formal living room WITH no kitchen
+            changeFrame(textArea, "map_8_B.png", temp.getDescription());
+         } else{
+            changeFrame(textArea, "map_8_A.png", temp.getDescription());
+         }
+      } else if(userInput.contains("Formal Living Room") && !map.getLocation(userInput).isVisited()){
+         location = userInput;
+         Location temp = map.getLocation(location);
+         temp.setVisited();
+         if(map.getLocation("Lower Hall").isVisited()){
+            if(!map.getLocation("Kitchen").isVisited() && !map.getLocation("Dining Room").isVisited()){// no kitchen no dining room
+               changeFrame(textArea, "map_8_C.png", temp.getDescription());
+            } else if(!map.getLocation("Dining Room").isVisited() && map.getLocation("Kitchen").isVisited()){// no dining room yes kitchen
+               changeFrame(textArea, "map_8_D.png", temp.getDescription());
+            } else if(map.getLocation("Dining Room").isVisited() && !map.getLocation("Kitchen").isVisited()){// yes dining room no kitchen
+               changeFrame(textArea, "map_8_B.png", temp.getDescription());
+            }
+         } else {
+            changeFrame(textArea, "map_7_B.png", temp.getDescription());
+         }
+      } else if(map.checkMove(location, userInput, textArea)){
          location = userInput;
          update(textArea);
       
