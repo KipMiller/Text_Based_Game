@@ -39,15 +39,14 @@ public class Episode1 {
             kitchen.add("Ammo");
             
             items.add(kitchen);
-            
-            
+
             
             Map theMap = new Map(items);
             Input input = new Input("Day 1", playerInventory, location, theMap); 
             
             
             String text = "You awake in a small bedroom which is scarcely furnished. You see around you a bed, a closet, and a nighstand. \n";
-            input.makeNewFrame(text, "map_4.png");// set the background image
+            input.makeNewFrame(text, "map_4.png", 860, 245);// set the background image
       }
       
       public static void dayEnd(){      

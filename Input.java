@@ -19,15 +19,17 @@ import java.net.*;
 import javax.sound.sampled.*;
 
 
-public class Input{
+public class Input extends JFrame{
    public static final int X = 1200;// constant resolution ints 
    public static final int Y = 800;
    public static String episodeNum;
    public static Inventory playerInventory;
    public static String location;
-   public static JLabel label = new JLabel();// make new label
+   public static JLabel label = new JLabel();// used for the background image
+   public static JLabel player = new JLabel();// used for the player's location dot (sprite)
    public Map map;
    
+
    //Constructor 
    Input(String episodeNum, Inventory playerInventory, String location, Map theMap){
       this.episodeNum = episodeNum;
@@ -36,16 +38,52 @@ public class Input{
       this.map = theMap;
    }
       
+   public Input(){
+      super("LayeredPane Example");
+      JLayeredPane pane = getLayeredPane();
+      setSize(1200,900);
+ 
+     JLabel labelB = new JLabel();
+     labelB.setBounds(1, 1, 1200, 900);
+     ImageIcon background = new ImageIcon("map_complete.png");
+     labelB.setIcon(background);
+     
+     
+     
+     JLabel player = new JLabel();
+     player.setBounds(400, 500, 10, 10);
+     ImageIcon playerIcon = new ImageIcon("playerDot.png");
+     player.setIcon(playerIcon);
+
+
+     pane.setPreferredSize(new Dimension(1200, 900));
+     pane.add(labelB, new Integer(0));
+     pane.add(player, new Integer(1));
+   
+      pane.setVisible(true);
+   
+   }
+      
+      
+   public static void main(String[] args){
+      Input test = new Input();
+      test.setVisible(true);
+      
+   } 
+    
+      
+ 
+      
 
    // make new frame function, takes in the text to be displayed as a string, and the name of the background image JPEG that will be shown 
-   public void makeNewFrame(String text, String backgroundImage){
+   public void makeNewFrame(String text, String backgroundImage, int playerX, int playerY){
          JFrame frame1 = new JFrame(episodeNum);// title at top of the window
          JPanel lowerPanel = new JPanel(new BorderLayout());// make a panel for the bottom half of the screen
          frame1.setSize(X,Y);// make the frame X by Y pixels
          frame1.getContentPane().add(lowerPanel,"South");// put the panel on the bottom
          frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame1.setLocationRelativeTo(null);
-         
+
          JTextField textField = new JTextField(20);
 
                       
@@ -83,13 +121,28 @@ public class Input{
                      checkInput(userInput, frame1, textArea);
                }
          }); 
-         // set up the background image and make the frame visible 
+         
+
+         // Using layered pane for the top panel so that there can be a player dot indicating location atop the map
+         JLayeredPane pane = getLayeredPane();
+         pane.setSize(1200,900);
+         label.setBounds(200, -100, 1200, 900);
          ImageIcon background = new ImageIcon(backgroundImage);
-         label.setIcon(background);// make the label the background image
-         JPanel p = new JPanel();// make new panel
-         p.add(label);// add the label to the panel
-         frame1.add(p);// add the panel to frame1 
+         label.setIcon(background);
+           
+         player.setBounds(playerX, playerY, 10, 10);// player X and player Y will determine the location of the player dot 
+         ImageIcon playerIcon = new ImageIcon("playerDot.png");
+         player.setIcon(playerIcon);
+ 
+         pane.setPreferredSize(new Dimension(1200, 900));
+         pane.add(label, new Integer(0));
+         pane.add(player, new Integer(1));
+      
+         pane.setVisible(true);
+
+         frame1.add(pane);
          frame1.setVisible(true);   
+          
    }// end of the make new frame function
 
 
@@ -262,7 +315,10 @@ public class Input{
       } else {// if they entered a bad location or something 
          textArea.append("I can't go there.\n");
       }
+      map.mapLocations(location, player);// update the location of the player dot after moving somewhere
    }
+   
+   
 
    // Slightly different commands if the user wants to go down/up the two staircases in the map
    public void stairs(JTextArea textArea, String userInput){

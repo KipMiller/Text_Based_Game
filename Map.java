@@ -190,6 +190,62 @@ public class Map{
       
       }
    }
+   
+   
+    // method that takes the players current location and updates the player dot on the map via X / Y coordinates for each room
+   public static void mapLocations(String currLocation, JLabel player ){
+      switch(currLocation){
+         case "Bedroom": 
+            player.setBounds(860, 245, 10,10);// good 
+            break;
+         case "Upper Hall": 
+            player.setBounds(860, 220, 10,10);// good
+            break;
+         case "Upper Bathroom": 
+            player.setBounds(875, 190, 10,10);
+            break;
+         case "Library": 
+            player.setBounds(845, 190, 10,10);            
+            break;
+         case "Master Bedroom": 
+            player.setBounds(750, 220, 10,10);            
+            break;
+         case "Upper Landing": 
+            player.setBounds(700, 220, 10,10);            
+            break;
+         case "Entrance": 
+            player.setBounds(570, 520, 10,10); // good           
+            break;
+         case "Formal Living Room": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+         case "Lower Hall": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+         case "Lower Bathroom": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+         case "Dining Room": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+         case "Pantry": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+         case "Kitchen": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+         case "Living Room": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+         case "Garage": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+         case "Study": 
+            player.setBounds(860, 245, 10,10);            
+            break;
+      
+      }
+   }
 
 
 }// End of the Map class
