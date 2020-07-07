@@ -44,6 +44,8 @@ public class Episode1 {
             Map theMap = new Map(items);
             Input input = new Input("Day 1", playerInventory, location, theMap); 
             
+            Episode1 test = new Episode1();
+            test.play();// start the background music
             
             String text = "You awake in a small bedroom which is scarcely furnished. You see around you a bed, a closet, and a nighstand. \n";
             input.makeNewFrame(text, "map_4.png", 860, 245);// set the background image
@@ -82,5 +84,48 @@ public class Episode1 {
                   }
             });
       }
+      
+      
+      
+    
+
+    // Method that will call the sound alarm constructor and create the sound clip object that will be played.
+    // After the sound clip has been created and started, when the user clicks the close button on the dialog
+    // the sound will cease to play.
+    public void play(){
+        Clip bgm = this.playAlarm();
+
+    }
+  
+    /*
+    Method that creates and starts the audio clip object, in this case an alarm sound effect will start
+    when this method is done, also returns said clip object so that we can successfully stop the sound
+    with a button press when we no longer need it to play.
+    */
+    public Clip playAlarm(){
+        try{
+
+            File noise = new File("BGM.wav");
+            Clip bgm = AudioSystem.getClip();
+            AudioInputStream stream = AudioSystem.getAudioInputStream(noise);
+            bgm.open(stream);
+            bgm.start();
+
+           return bgm;
+        // Catch all of the potential errors that come from the clip class
+        } catch(UnsupportedAudioFileException e){
+            System.out.println(e);
+            return null;
+        } catch(IOException e){
+            System.out.println(e);
+            return null;
+        } catch( LineUnavailableException e){
+            System.out.println(e);
+            return null;
+        }
+
+    }
+
+      
       
 }// end of episode 1 
