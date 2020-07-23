@@ -36,15 +36,15 @@ public class Map{
       
       // Upper Bathroom
       String[] n3 ={"Upper Hall"};
-      Location loc3 = new Location("Upper Bathroom",n3,descriptions[2],false,true,"map_13.png", items.get(0));
+      Location loc3 = new Location("Upper Bathroom",n3,descriptions[2],false,false,"map_13.png", items.get(0));
       
       // Library
       String[] n4 ={"Upper Hall"};
-      Location loc4 = new Location("Library",n4,descriptions[3],false,true,"map_16.png", items.get(0));
+      Location loc4 = new Location("Library",n4,descriptions[3],false,false,"map_16.png", items.get(0));
       
       // Master Bedroom
-      String[] n5 ={"Upper Hall Upper Landing"};
-      Location loc5 = new Location("Master Bedroom",n5,descriptions[4],false, true, "map_12.png", items.get(0));
+      String[] n5 ={"Upper Hall", "Upper Landing"};
+      Location loc5 = new Location("Master Bedroom",n5,descriptions[4],false, false, "map_12.png", items.get(0));
       
       // ???
       String[] n6 ={"Upper Hall"};
@@ -71,15 +71,15 @@ public class Map{
       
       // Garage
       String[] n11 ={"Lower Hall", "Living Room"};
-      Location loc11 = new Location("Garage",n11,descriptions[10],false,true, "map_9.png", items.get(0));
+      Location loc11 = new Location("Garage",n11,descriptions[10],false,false, "map_9.png", items.get(0));
       
       //Study
       String[] n12 ={"Lower Hall"};
-      Location loc12 = new Location("Study",n12,descriptions[11],false,true, "map_complete.png", items.get(0));
+      Location loc12 = new Location("Study",n12,descriptions[11],false,false, "map_complete.png", items.get(0));
       
       // Lower Bathroom
       String[] n13 ={"Lower Hall"};
-      Location loc13 = new Location("Lower Bathroom",n13,descriptions[12],false,true, "map_15.png", items.get(0));
+      Location loc13 = new Location("Lower Bathroom",n13,descriptions[12],false,false, "map_15.png", items.get(0));
       
       // Dining Room
       String[] n14 ={"Lower Hall", "Kitchen", "Pantry"};
@@ -87,7 +87,7 @@ public class Map{
       
       // Pantry
       String[] n15 ={"Dining Room"};
-      Location loc15 = new Location("Pantry",n15,descriptions[14],false,true, "map_14.png", items.get(0));
+      Location loc15 = new Location("Pantry",n15,descriptions[14],false,false, "map_14.png", items.get(0));
       
       // Kitchen
       String[] n16 ={"Dining Room" ,"Living Room", "Lower Hall"};
@@ -95,7 +95,7 @@ public class Map{
       
       // Living Room
       String[] n17 ={"Kitchen", "Garage", "Upper Landing"};
-      Location loc17 = new Location("Living Room",n17,descriptions[16],false,true, "map_10.png", items.get(0));
+      Location loc17 = new Location("Living Room",n17,descriptions[16],false,false, "map_10.png", items.get(0));
       
       
       // Add all of the location variables to the map arrayList
@@ -202,28 +202,28 @@ public class Map{
             player.setBounds(860, 220, 10,10);// good
             break;
          case "Upper Bathroom": 
-            player.setBounds(875, 190, 10,10);
+            player.setBounds(875, 190, 10,10);// good
             break;
          case "Library": 
-            player.setBounds(845, 190, 10,10);            
+            player.setBounds(845, 190, 10,10);// good            
             break;
          case "Master Bedroom": 
-            player.setBounds(750, 220, 10,10);            
+            player.setBounds(650, 220, 10,10); // good          
             break;
          case "Upper Landing": 
-            player.setBounds(700, 220, 10,10);            
+            player.setBounds(600, 190, 10,10);// good            
             break;
          case "Entrance": 
             player.setBounds(570, 520, 10,10); // good           
             break;
          case "Formal Living Room": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(660, 530, 10,10); // good           
             break;
          case "Lower Hall": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(600, 400, 10,10); // good           
             break;
          case "Lower Bathroom": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(660, 450, 10,10);            
             break;
          case "Dining Room": 
             player.setBounds(860, 245, 10,10);            
