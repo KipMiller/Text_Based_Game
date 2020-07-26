@@ -71,9 +71,7 @@ public class Input extends JFrame{
       
    } 
     
-      
- 
-      
+
 
    // make new frame function, takes in the text to be displayed as a string, and the name of the background image JPEG that will be shown 
    public void makeNewFrame(String text, String backgroundImage, int playerX, int playerY){
@@ -84,10 +82,10 @@ public class Input extends JFrame{
          frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame1.setLocationRelativeTo(null);
 
-         JTextField textField = new JTextField(20);
+         JTextField textField = new JTextField(40);
 
                       
-         JTextArea textArea = new JTextArea(5,100);// displays the text for the current frame, can be updated with setText
+         JTextArea textArea = new JTextArea(8,200);// displays the text for the current frame, can be updated with setText
          JScrollPane scrolling = new JScrollPane(textArea);
          scrolling.setVerticalScrollBarPolicy( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
          
@@ -121,8 +119,7 @@ public class Input extends JFrame{
                      checkInput(userInput, frame1, textArea);
                }
          }); 
-         
-
+  
          // Using layered pane for the top panel so that there can be a player dot indicating location atop the map
          JLayeredPane pane = getLayeredPane();
          pane.setSize(1200,900);
@@ -185,40 +182,31 @@ public class Input extends JFrame{
       }
       
       
-      // Day-specific interractions (control game flow essentially)
-      /*
-      if(episodeNum.equals("Day 1")){
-      
-      } else if (episodeNum.equals("Day 2")){
-      
-      } else if (episodeNum.equals("Day 3")){
-         
-      }
-      */
-      
       else // If the user enters something we don't recognize 
          textArea.append( "I can't \"" + userInput + "\"\n");
       
    }//end of check input 
 
+
+   // Method used to grab a specified item based on their current location and input.
    public void grab(JTextArea textArea, String userInput){
       if(map.getLocation(location).isItem(userInput)){
          textArea.append("You grab " + userInput + " and put it in your pocket.\n");
          playerInventory.addItem(userInput);
       } else {
-         textArea.append("I Can't grab that.\n");
+         textArea.append("I can't grab that.\n");
       }
    }
    
    
-   
+   // Unlock (open) one of several doors, some need keys and some are locked from one side.
    public void unlock(JTextArea textArea, String userInput){
       if(location.equals("Living Room")){// The kithen door from the living room doesn't need a key to be unlocked
          map.getLocation(location).setLocked();
-         textArea.append("You turn the doorknob and hear a click, the door to the kitchen is now unlocked.\n");
+         textArea.append("You turn the doorknob and hear a click, the door to the kitchen is now unlocked. Your push open the door and prop it open with a kitchen chair, so that it won't close.\n");
       } else if(location.equals("Master Bedroom")){
          map.getLocation(location).setLocked();
-         textArea.append("You turn the doorknob and hear a click, the door leading to the upper hall is now unlocked.\n");
+         textArea.append("You turn the doorknob and hear a click, the door leading to the Upper Hall is now unlocked.\n");
       } else if(map.getLocation(userInput).isLocked()){// if the room is indeed locked
          if(playerInventory.validKey(userInput)){
             map.getLocation(userInput).setLocked();
@@ -242,17 +230,19 @@ public class Input extends JFrame{
       }
    }
 
+   // Allows the player to go from one room to another, based on a rigid set of logic that connects each room and determines where 
+   // and when the player can move.
    public void go(JTextArea textArea, String userInput){
       
-      if(userInput.contains("stairs")){
+      if(userInput.contains("stairs")){// if the player wants to go up / down one of the two staircases
          stairs(textArea,userInput);
-      } else if(userInput.contains("hole") && location.equals("Garage")){ 
+      } else if(userInput.contains("hole") && location.equals("Garage")){ // if they want to go through the hole in the garage
          location = "Living Room";
          update(textArea);
-      } else if(userInput.contains("Master Bedroom") && location.equals("Upper Landing")){
+      } else if(userInput.contains("Master Bedroom") && location.equals("Upper Landing")){// if they are on the upper landing and go into the master bedroom
          location = "Master Bedroom";
          update(textArea);
-         if(episodeNum.equals("Day 1")){
+         if(episodeNum.equals("Day 1")){// if it is day 1, they have finished the first day by getting to the master bedroom
             Episode1.dayEnd();   
          }
       }else if(userInput.contains("Lower Hall") && !map.getLocation("Lower Hall").isVisited()){// lower hall with either formal living room visited or not 

@@ -36,15 +36,15 @@ public class Map{
       
       // Upper Bathroom
       String[] n3 ={"Upper Hall"};
-      Location loc3 = new Location("Upper Bathroom",n3,descriptions[2],false,false,"map_13.png", items.get(0));
+      Location loc3 = new Location("Upper Bathroom",n3,descriptions[2],false,true,"map_13.png", items.get(0));
       
       // Library
       String[] n4 ={"Upper Hall"};
-      Location loc4 = new Location("Library",n4,descriptions[3],false,false,"map_16.png", items.get(0));
+      Location loc4 = new Location("Library",n4,descriptions[3],false,true,"map_16.png", items.get(0));
       
       // Master Bedroom
       String[] n5 ={"Upper Hall", "Upper Landing"};
-      Location loc5 = new Location("Master Bedroom",n5,descriptions[4],false, false, "map_12.png", items.get(0));
+      Location loc5 = new Location("Master Bedroom",n5,descriptions[4],false, true, "map_12.png", items.get(0));
       
       // ???
       String[] n6 ={"Upper Hall"};
@@ -71,15 +71,15 @@ public class Map{
       
       // Garage
       String[] n11 ={"Lower Hall", "Living Room"};
-      Location loc11 = new Location("Garage",n11,descriptions[10],false,false, "map_9.png", items.get(0));
+      Location loc11 = new Location("Garage",n11,descriptions[10],false,true, "map_9.png", items.get(0));
       
       //Study
       String[] n12 ={"Lower Hall"};
-      Location loc12 = new Location("Study",n12,descriptions[11],false,false, "map_complete.png", items.get(0));
+      Location loc12 = new Location("Study",n12,descriptions[11],false,true, "map_complete.png", items.get(0));
       
       // Lower Bathroom
       String[] n13 ={"Lower Hall"};
-      Location loc13 = new Location("Lower Bathroom",n13,descriptions[12],false,false, "map_15.png", items.get(0));
+      Location loc13 = new Location("Lower Bathroom",n13,descriptions[12],false,true, "map_15.png", items.get(0));
       
       // Dining Room
       String[] n14 ={"Lower Hall", "Kitchen", "Pantry"};
@@ -87,7 +87,7 @@ public class Map{
       
       // Pantry
       String[] n15 ={"Dining Room"};
-      Location loc15 = new Location("Pantry",n15,descriptions[14],false,false, "map_14.png", items.get(0));
+      Location loc15 = new Location("Pantry",n15,descriptions[14],false,true, "map_14.png", items.get(0));
       
       // Kitchen
       String[] n16 ={"Dining Room" ,"Living Room", "Lower Hall"};
@@ -95,7 +95,7 @@ public class Map{
       
       // Living Room
       String[] n17 ={"Kitchen", "Garage", "Upper Landing"};
-      Location loc17 = new Location("Living Room",n17,descriptions[16],false,false, "map_10.png", items.get(0));
+      Location loc17 = new Location("Living Room",n17,descriptions[16],false,true, "map_10.png", items.get(0));
       
       
       // Add all of the location variables to the map arrayList
@@ -140,10 +140,10 @@ public class Map{
    public static void look(String currLocation, JTextArea textArea){
       switch(currLocation){
          case "Bedroom": 
-            textArea.append("Pale beige walls sit uncovered, with window to the south.\nWhite wooden doors conceal a closet to the west, across from a small bed to the east.\nA nighstand with no light atop it is next to the bed.\n");
+            textArea.append("Pale beige walls sit uncovered, with window to the south.\nWhite wooden doors conceal a closet, across from a small bed.\nA nighstand with no light atop it is next to the bed.\n");
             break;
          case "Upper Hall": 
-            textArea.append("A long hallway on the second floor of the house, it stretches from the east to the west, with a window ending the hall to the east.\nThe bedroom sits on the south side of the hall, with three doors lining the wall opposite the bedroom door.\nAt the end of the west end of the hall is a large landing with a staircase and one final door on the west wall.\n");
+            textArea.append("A long hallway on the second floor of the house, it stretches from the east to the west, with a window ending the hall to the east.\nThe bedroom sits on the south side of the hall, with three doors lining the wall opposite the bedroom door; the Upper Bathroom, Library, and a room you cannot recall, respectively.\nAt the end of the west end of the hall is a large landing with a staircase and one final door on the west wall, the door to the master bedroom.\n");
             break;
          case "Upper Bathroom": 
             textArea.append("The cramped bathroom has a robin egg blue color to it, but the dull grey light coming in through the skylight fills you with unease as you look around.\nYou turn the knob of the faucet and no water comes out.\nThe lights, surprisingly, work in the bathroom, but a quick look through the drawers proves there are no useful items for now.\n");
@@ -155,34 +155,34 @@ public class Map{
             textArea.append("The modern looking master bedroom is sparsely decorate, save for a number of abstract paintings on the east and west walls.\nTo the south are two long windows providing a good view of the outside area.\nA long cabinet sits by the east wall next to the door to the upper hall, atop it are a number of photo frames all devoid of pictures save for one.\n");
             break;
          case "Upper Landing": 
-            textArea.append("The small landing is illuminated by a skylight directly above the staircase leading back down to the living room.\nGazing down the stairs into the dimly lit living room sends a shiver down your spine, though you can clearly see nobody at the bottom of the stairs, you can't escape the sensation of being watched from below.\nA small love seat lies along the west wall adjacent to a bookshelf, across from the chair is a dark wooden door with several marks seemingly carved into it by an animal.\n");
+            textArea.append("The small landing is illuminated by a skylight directly above the staircase leading back down to the Living Room.\nGazing down the stairs into the dimly lit Living Room sends a shiver down your spine, though you can clearly see nobody at the bottom of the stairs, you can't escape the sensation of being watched from below.\nA small love seat lies along the west wall adjacent to a bookshelf, across from the chair is a dark wooden door with several marks seemingly carved into it by an animal.\n");
             break;
          case "Entrance": 
-            textArea.append("A thick wooden door with two large glass panes sits at the bottom of the staircase on the south wall. The front door won't budge and the lightswitches on the wall beside the door serve no visible purpose.\nTo the east is an opening to a room with several large windows that can be seen from the front door.\nTo the north, past the stairs, is a hallway forking off in several directions.\n"); 
+            textArea.append("A thick wooden door with two large glass panes sits at the bottom of the staircase on the south wall. The front door won't budge and the light switches on the wall beside the door serve no visible purpose.\nTo the east is an opening to a room with several large windows that can be seen from the front door, the Formal Living Room.\nTo the north, past the stairs, is the Lower Hall forking off in several directions.\n"); 
             break;
          case "Formal Living Room": 
-            textArea.append("The formal living has three floort-to-cieling sized windows lining the south wall, giving a very modern look to the room.\nA small glass coffee table sits bare in the center of the room, flanked by unused sofas and a dormant fireplace on the east wall.\nTo the north is a path joining up with the lower hallway, to the west is the path back to the entrance of the house.\n");
+            textArea.append("The formal living has three floor-to-ceiling sized windows lining the south wall, giving a very modern look to the room.\nA small glass coffee table sits bare in the center of the room, flanked by unused sofas and a dormant fireplace on the east wall.\nTo the north is a path joining up with the Lower Hall, to the west is the path back to the Entrance of the house.\n");
             break;
          case "Lower Hall": 
-            textArea.append("The lower hallway has hardly any natural light illuminating it, but you can see the path leading north ends in a window and what looks like a dining room table.\nTo the east are two doors concealed in shadow, it's too dark to try and head down this way.\nTo the west, right behind the base of the stairs is a door taller than the others, made of a solid white piece of wood covered in what looks like black splotches.\n");
+            textArea.append("The lower hallway has hardly any natural light illuminating it, but you can see the path leading north ends in a window and what looks like a Dining Room table, opposite the black and white tiles of the Kitchen.\nTo the east are two doors concealed in shadow, it's too dark to try and head down this way.\nTo the west, right behind the base of the stairs is a door taller than the others, made of a solid white piece of wood covered in what looks like black splotches, the Garage.\n");
             break;
          case "Lower Bathroom": 
-            textArea.append("???");
+            textArea.append("With no natural lighting, you fumble around the pitch black bathroom in search of a light switch. You hold your breath and flip what feels like the light, was that the sound of another person breathing? The lower bathroom is empty save for a dark purple leatherbound book on the counter by the sink.");
             break;
          case "Dining Room": 
-            textArea.append("The dining room has a long wooden table in the center, with a handful of chairs toppled over onto their side; save for two on either end of the table.\nAside from the disheveled nature of the scene, the north and south walls have several pictures all perfectly aligned.\nThe east wall alone has a light brown wooden door.\n");
+            textArea.append("The Dining Room has a long wooden table in the center, with a handful of chairs toppled over onto their side; save for two on either end of the table.\nAside from the disheveled nature of the scene, the north and south walls have several pictures all perfectly aligned.\nThe east wall alone has a light brown wooden door, the Pantry. Across from the Pantry, back the way you came, sits the Kitchen.\n");
             break;
          case "Pantry": 
-            textArea.append("The pantry is lined with shelving covered in sealed boxes. A single lightbulb hangs low from the cieling, and after fumbling along the wall you flip the switch to illuminate the room better.\nOther than several dozen boxes and a number of empty water gallons, the pantry seems to hold nothing of consequence as far as you can see.\n");
+            textArea.append("The Pantry is lined with shelving covered in sealed boxes. A single lightbulb hangs low from the cieling, and after fumbling along the wall you flip the switch to illuminate the room better.\nOther than several dozen boxes and a number of empty water gallons, the pantry seems to hold nothing of consequence as far as you can see.\n");
             break;
          case "Kitchen": 
-            textArea.append("The kitchen has cabinets and black granite countertops lining the north and west walls.\nA light wooden door sits to the south with no door handle visible.\nA rounded table is at the center of the kitchen with several pieces of paper atop it.\nAfter rummaging through the drawers, cabinets, and the fridge, you find nothing of use save for a handfull of spoons that hardly seem worthwhile in taking.\n");
+            textArea.append("The kitchen has cabinets and black granite countertops lining the north and west walls.\nA light wooden door sits to the south with no door handle visible, it was the door to the Living Room.\nA rounded table is at the center of the kitchen with several pieces of paper atop it.\nAfter rummaging through the drawers, cabinets, and the fridge, you find nothing of use save for a handfull of spoons that hardly seem worthwhile in taking.\n");
             break;
          case "Living Room": 
-            textArea.append("The dimly lit living room has a large flat screen TV on the south wall, to the right of the TV is a gaping hole leading into the garage, the edges of the hole seem smoothed down, as if from wear and tear of someone passing through it multiple times.\nAcross from the TV lies an extra long sofa with a coffee table in front of it.\nNext to the sofa is a staircase heading upwards to a dull grey light.\n");
+            textArea.append("The dimly lit Living Room has a large flat screen TV on the south wall, to the right of the TV is a gaping hole leading into the Garage, the edges of the hole seem smoothed down, as if from wear and tear of someone passing through it multiple times.\nAcross from the TV lies an extra long sofa with a coffee table in front of it.\nNext to the sofa is a staircase heading upwards to a dull grey light.\n");
             break;
          case "Garage": 
-            textArea.append("The two car garage is seemingly empty save for what looks like several oil stains in the center of the concrete.\nTo the east is a window and a door surrounded by large sealed up boxes.\nThe east wall has several light switches that don't work and the door leading back to the lower hallway.\nThe south wall has two garage doors that don't appear to be hooked up to the garage door openers, judging by the chains hanging from the lifts.\nThe north wall has numerous hooks and panels that should have been holding power tools and equipment; but sadly this wall is completely bare of tools.\nTo the left of the tool racks is a large hole in the wall, seemingly leading to another room of the house.\n"); 
+            textArea.append("The two car Garage is seemingly empty save for what looks like several oil stains in the center of the concrete.\nTo the east is a window and a door surrounded by large sealed up boxes.\nThe east wall has several light switches that don't work and the door leading back to the Lower Hall.\nThe south wall has two garage doors that don't appear to be hooked up to the garage door openers, judging by the chains hanging from the lifts.\nThe north wall has numerous hooks and panels that should have been holding power tools and equipment; but sadly this wall is completely bare of tools.\nTo the left of the tool racks is a large Hole in the wall, seemingly leading to another room of the house.\n"); 
             break;
          case "Study": 
             textArea.append("???");
@@ -223,25 +223,25 @@ public class Map{
             player.setBounds(600, 400, 10,10); // good           
             break;
          case "Lower Bathroom": 
-            player.setBounds(660, 450, 10,10);            
+            player.setBounds(660, 430, 10,10);// good             
             break;
          case "Dining Room": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(660, 380, 10,10);// good            
             break;
          case "Pantry": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(726, 380, 10,10);// good            
             break;
          case "Kitchen": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(500, 370, 10,10); // good           
             break;
          case "Living Room": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(485, 415, 10,10);// good            
             break;
          case "Garage": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(480, 480, 10,10);// good            
             break;
          case "Study": 
-            player.setBounds(860, 245, 10,10);            
+            player.setBounds(720, 430, 10,10);// good            
             break;
       
       }

@@ -19,17 +19,112 @@ import javax.sound.sampled.*;
 
 public class Episode2{
       
-      int choice = 0;// the players choice 
-      public static String location = "TV";// the current location of the player
-      public static Inventory playerInventory = new Inventory();
-      //public static Inventory playerInventory = new Inventory(2, 7, 4, 3, 2, 1);
-      // the main function, called upon clicking the 'Episode 2' button at the main menu
       public static void main(String[] args){
-            Map theMap = new Map();
+
+            String location = "Master Bedroom";// the current location of the player
+            Inventory playerInventory = new Inventory();
+            ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
+            
+            ArrayList<String> temp = new ArrayList<String>();
+            temp.add("");
+            
+            items.add(temp);
+            
+            
+            ArrayList<String> kitchen = new ArrayList<String>();
+            kitchen.add("Garage Key");
+            kitchen.add("Ammo");
+            
+            items.add(kitchen);
+
+// TODO: Add items to the master bedroom, and any other relevant items for story progression.
+            
+            Map theMap = new Map(items);
             Input input = new Input("Day 2", playerInventory, location, theMap); 
-            String text = "You awaken in a dark and dirty room, atop a sofa before a TV. Behind you is an open door into a Kitchen. \n";
-            input.makeNewFrame(text, "tv.jpg");
+            
+            Episode2 test = new Episode2();
+            test.play();// start the background music
+            
+            String text = "You awake in the Master Bedroom, your head still aching from the fall. You feintly recall the growing sound of whispers the night before, but after quickly glancing around the room, you are sure you are alone for now. Looking out the window, you see the back end of the car jutting out of the garage below you, it appears to have gotten stuck halfway into the garage. \n";
+            input.makeNewFrame(text, "map_12.png", 650, 220);// set the background image
       }
+      
+      // The series of events caused upon finishing the second day.
+      public static void dayEnd(){      
+            JFrame inventory = new JFrame ("Day 2 End");
+            JPanel panel1 = new JPanel(new BorderLayout());
+            inventory.setSize(600,400);
+            inventory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            inventory.setLocationRelativeTo(null);
+            JButton close = new JButton("Main Menu");
+            
+            JTextArea items = new JTextArea(30,30);// displays the text for the current frame, can be updated with setText
+            items.setEditable(false);
+ 
+            items.setLineWrap(true);
+ /*
+            items.setText("Upon entering the Master Bedroom, you pull aside the blinds and the dull grey light floods the room.\n"
+             + " Outside the window you see rows and rows of trees flanking a long gravel driveway. The grey light,\n while seemingly coming from somewhere unatural,"
+              + " grows black as feint whispers surround you. A pair of headlights appear at the end of the driveway,\n the car behind them careening down the path at breakneck speeds."
+              + " You let out a gasp as the car draws closer,\n clearly aiming to collide with the garage below you.\n Before you can get out of the master bedroom the car slams into the double garage doors and the floor beneath you shakes.\n"
+              + " You fall to the ground, hitting your head on the edge of the wooden dresser. The faint sound of whispering grows closer and closer, your eyes close tight as night falls...\n");
+   */         
+            inventory.getContentPane().add(panel1,"Center");
+            panel1.add(close, BorderLayout.PAGE_END);
+            panel1.add(items, BorderLayout.CENTER);
+            inventory.setVisible(true);
+            
+            close.addActionListener(new ActionListener(){// set up the close inventory button usage 
+                  public void actionPerformed(ActionEvent e){
+                        inventory.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        inventory.dispatchEvent(new WindowEvent(inventory, WindowEvent.WINDOW_CLOSING));
+                        //String[] args = {"","",""};
+                        //Game.main(args);
+                        // TODO: Get the main menu working on close
+                  }
+            });
+      }
+      
+      
+      
+    
+
+    // Method that will call the sound alarm constructor and create the sound clip object that will be played.
+    // After the sound clip has been created and started, when the user clicks the close button on the dialog
+    // the sound will cease to play.
+    public void play(){
+        Clip bgm = this.playMusic();
+
+    }
+  
+    /*
+    Method that creates and starts the audio clip object, in this case an alarm sound effect will start
+    when this method is done, also returns said clip object so that we can successfully stop the sound
+    with a button press when we no longer need it to play.
+    */
+    public Clip playMusic(){
+        try{
+
+            File noise = new File("BGM.wav");// TODO: Add a new song for the second day
+            Clip bgm = AudioSystem.getClip();
+            AudioInputStream stream = AudioSystem.getAudioInputStream(noise);
+            bgm.open(stream);
+            bgm.start();
+
+           return bgm;
+        // Catch all of the potential errors that come from the clip class
+        } catch(UnsupportedAudioFileException e){
+            System.out.println(e);
+            return null;
+        } catch(IOException e){
+            System.out.println(e);
+            return null;
+        } catch( LineUnavailableException e){
+            System.out.println(e);
+            return null;
+        }
+
+    }
 
 
 }// end of episode 2
