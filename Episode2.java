@@ -38,9 +38,15 @@ public class Episode2{
             items.add(kitchen);
 
 // TODO: Add items to the master bedroom, and any other relevant items for story progression.
+            boolean[] visits = {true,true,false,false,true,false,true,true,true,true,true,false,false,true,false,true,true};
+            boolean[] locks = {false,false,true,true,false,true,false,false,false,false,false,true,true,false,false,false,false};
             
-            Map theMap = new Map(items);
+            
+            Map theMap = new Map(items,visits,locks);
             Input input = new Input("Day 2", playerInventory, location, theMap); 
+            
+            theMap.getLocation("Pantry").setLocked();// unlock the pantry for episode 2 
+            
             
             Episode2 test = new Episode2();
             test.play();// start the background music

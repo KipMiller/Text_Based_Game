@@ -37,9 +37,11 @@ public class Episode1 {
             kitchen.add("Ammo");
             
             items.add(kitchen);
-
             
-            Map theMap = new Map(items);
+            boolean[] visits = {true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
+            boolean[] locks = {false,false,true,true,true,true,false,false,false,false,true,true,true,false,true,false,true};
+            
+            Map theMap = new Map(items,visits,locks);
             Input input = new Input("Day 1", playerInventory, location, theMap); 
             
             Episode1 test = new Episode1();

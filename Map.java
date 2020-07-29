@@ -13,7 +13,7 @@ import javax.swing.*;
 public class Map{
    List<Location> map;
    
-   public Map(ArrayList<ArrayList<String>> items){
+   public Map(ArrayList<ArrayList<String>> items, boolean[] visits, boolean[] locks){
        map = new ArrayList<Location>();
 
        String[] descriptions = {"A small bedroom with a bed, closet, window and a nightstand.\n","A long hallway lined with four doors, a window and a staircase going downwards.\n",
@@ -25,77 +25,77 @@ public class Map{
        "You crawl through the hole and see what appears to be the living room, there is a large television beside the hole you crawled through on the wall. \nA staircase going upwards sits to your left beside a window filling the room with a pale grey light. \nA door stands across the room from you adjacent to a sofa.\n"};
    
       // top floor 
-      
+ 
       // Bedroom
       String[] n1 ={"Upper Hall"};
-      Location loc1 = new Location("Bedroom",n1,descriptions[0],true,false,"map_4.png", items.get(0));
+      Location loc1 = new Location("Bedroom",n1,descriptions[0],visits[0],locks[0],"map_4.png", items.get(0));
       
       // Upper Hall
       String[] n2 ={"Bedroom", "Library", "Upper Bathroom", "Master Bedroom", "?", "Entrance"};
-      Location loc2 = new Location("Upper Hall",n2,descriptions[1],false,false,"map_5.png", items.get(0));
+      Location loc2 = new Location("Upper Hall",n2,descriptions[1],visits[1],locks[1],"map_5.png", items.get(0));
       
       // Upper Bathroom
       String[] n3 ={"Upper Hall"};
-      Location loc3 = new Location("Upper Bathroom",n3,descriptions[2],false,true,"map_13.png", items.get(0));
+      Location loc3 = new Location("Upper Bathroom",n3,descriptions[2],visits[2],locks[2],"map_13.png", items.get(0));
       
       // Library
       String[] n4 ={"Upper Hall"};
-      Location loc4 = new Location("Library",n4,descriptions[3],false,true,"map_16.png", items.get(0));
+      Location loc4 = new Location("Library",n4,descriptions[3],visits[3],locks[3],"map_16.png", items.get(0));
       
       // Master Bedroom
       String[] n5 ={"Upper Hall", "Upper Landing"};
-      Location loc5 = new Location("Master Bedroom",n5,descriptions[4],false, true, "map_12.png", items.get(0));
+      Location loc5 = new Location("Master Bedroom",n5,descriptions[4],visits[4],locks[4], "map_12.png", items.get(0));
       
       // ???
       String[] n6 ={"Upper Hall"};
-      Location loc6 = new Location("?",n6,descriptions[5],false,true, "map_17.png", items.get(0));
+      Location loc6 = new Location("?",n6,descriptions[5],visits[5],locks[5], "map_17.png", items.get(0));
       
       // Upper Landing
       String[] n7 ={"Master Bedroom", "Living Room"};
-      Location loc7 = new Location("Upper Landing",n7,descriptions[6],false, false, "map_11.png", items.get(0));
+      Location loc7 = new Location("Upper Landing",n7,descriptions[6],visits[6],locks[6], "map_11.png", items.get(0));
       
       
       // bottom floor 
       
       // Entrance
       String[] n8 ={"Formal Living Room", "Lower Hall"};
-      Location loc8 = new Location("Entrance",n8,descriptions[7],false,false, "map_6.png", items.get(0));
+      Location loc8 = new Location("Entrance",n8,descriptions[7],visits[7],locks[7], "map_6.png", items.get(0));
       
       // Formal Living Room
       String[] n9 ={"Entrance", "Lower Hall"};
-      Location loc9 = new Location("Formal Living Room",n9,descriptions[8],false,false, "map_7_B.png", items.get(0));
+      Location loc9 = new Location("Formal Living Room",n9,descriptions[8],visits[8],locks[8], "map_7_B.png", items.get(0));
       
       // Lower Hall
       String[] n10 ={"Formal Living Room","Entrance", "Garage", "Study", "Lower Bathroom", "Dining Room", "Kitchen"};
-      Location loc10 = new Location("Lower Hall",n10,descriptions[9],false,false, "map_8_C.png", items.get(0));
+      Location loc10 = new Location("Lower Hall",n10,descriptions[9],visits[9],locks[9], "map_8_C.png", items.get(0));
       
       // Garage
       String[] n11 ={"Lower Hall", "Living Room"};
-      Location loc11 = new Location("Garage",n11,descriptions[10],false,true, "map_9.png", items.get(0));
+      Location loc11 = new Location("Garage",n11,descriptions[10],visits[10],locks[10], "map_9.png", items.get(0));
       
       //Study
       String[] n12 ={"Lower Hall"};
-      Location loc12 = new Location("Study",n12,descriptions[11],false,true, "map_complete.png", items.get(0));
+      Location loc12 = new Location("Study",n12,descriptions[11],visits[11],locks[11], "map_complete.png", items.get(0));
       
       // Lower Bathroom
       String[] n13 ={"Lower Hall"};
-      Location loc13 = new Location("Lower Bathroom",n13,descriptions[12],false,true, "map_15.png", items.get(0));
+      Location loc13 = new Location("Lower Bathroom",n13,descriptions[12],visits[12],locks[12], "map_15.png", items.get(0));
       
       // Dining Room
       String[] n14 ={"Lower Hall", "Kitchen", "Pantry"};
-      Location loc14 = new Location("Dining Room",n14,descriptions[13],false,false, "map_8_G.png", items.get(0));
+      Location loc14 = new Location("Dining Room",n14,descriptions[13],visits[13],locks[13], "map_8_G.png", items.get(0));
       
       // Pantry
       String[] n15 ={"Dining Room"};
-      Location loc15 = new Location("Pantry",n15,descriptions[14],false,true, "map_14.png", items.get(0));
+      Location loc15 = new Location("Pantry",n15,descriptions[14],visits[14],locks[14], "map_14.png", items.get(0));
       
       // Kitchen
       String[] n16 ={"Dining Room" ,"Living Room", "Lower Hall"};
-      Location loc16 = new Location("Kitchen",n16,descriptions[15],false,false, "map_8_E.png", items.get(1));
+      Location loc16 = new Location("Kitchen",n16,descriptions[15],visits[15],locks[15], "map_8_E.png", items.get(1));
       
       // Living Room
       String[] n17 ={"Kitchen", "Garage", "Upper Landing"};
-      Location loc17 = new Location("Living Room",n17,descriptions[16],false,true, "map_10.png", items.get(0));
+      Location loc17 = new Location("Living Room",n17,descriptions[16],visits[16],locks[16], "map_10.png", items.get(0));
       
       
       // Add all of the location variables to the map arrayList
