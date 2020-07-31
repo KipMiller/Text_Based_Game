@@ -137,22 +137,22 @@ public class Map{
 
    
    // look command, used to further inspect a location, can give more details related to a room than an initial
-   public static void look(String currLocation, JTextArea textArea){
+   public static void look(String currLocation, JTextArea textArea, String episodeNum){
       switch(currLocation){
          case "Bedroom": 
-            textArea.append("Pale beige walls sit uncovered, with window to the south.\nWhite wooden doors conceal a closet, across from a small bed.\nA nighstand with no light atop it is next to the bed.\n");
+            textArea.append("Pale beige walls sit uncovered, with window to the south.\nWhite wooden doors conceal a closet, across from a small bed.\nA nighstand with no light atop it is next to the bed. The only door out of the room leads to the Upper Hall\n");
             break;
          case "Upper Hall": 
             textArea.append("A long hallway on the second floor of the house, it stretches from the east to the west, with a window ending the hall to the east.\nThe bedroom sits on the south side of the hall, with three doors lining the wall opposite the bedroom door; the Upper Bathroom, Library, and a room you cannot recall, respectively.\nAt the end of the west end of the hall is a large landing with a staircase and one final door on the west wall, the door to the master bedroom.\n");
             break;
          case "Upper Bathroom": 
-            textArea.append("The cramped bathroom has a robin egg blue color to it, but the dull grey light coming in through the skylight fills you with unease as you look around.\nYou turn the knob of the faucet and no water comes out.\nThe lights, surprisingly, work in the bathroom, but a quick look through the drawers proves there are no useful items for now.\n");
+            textArea.append("The cramped bathroom has a robin egg blue color to it, but the dull grey light coming in through the skylight fills you with unease as you look around.\nA puddle of still water has pooled around the toilet, leaking out of the sink which looks like it has been slowly dripping water for a very long time. Trying not to step in the pool of water, you stretch your arm out and turn the knob of the sink, ensuring the water is turned off. You also pull up on a level beside the sink's knob, draining the full basin of water. 'How long was this dripping?' As the stagnant water drains from the sink, you spot another key; putting it into your pocket as soon as you recognize the shape.\n");
             break;
          case "Library": 
             textArea.append("The library is wide and the north wall is lined with three windows. The lights don't work, but you can see the floor is littered with books, each of the east, west and south walls are lined with half empty bookshelves, most of their contents lining the hardwood floor.\n");
             break;
          case "Master Bedroom": 
-            textArea.append("The modern looking master bedroom is sparsely decorate, save for a number of abstract paintings on the east and west walls.\nTo the south are two long windows providing a good view of the outside area.\nA long cabinet sits by the east wall next to the door to the upper hall, atop it are a number of photo frames all devoid of pictures save for one.\n");
+            textArea.append("The modern looking master bedroom is sparsely decorate, save for a number of abstract paintings on the east and west walls.\nTo the south are two long windows providing a good view of the outside area.\nA long cabinet sits by the east wall next to the door to the upper hall, atop it are a number of photo frames all devoid of pictures save for one; it looks like a family photo, but the two children have their eyes closed, and the parents are frowning. Behind the photo frame appears to be a black, leather bound Book.\n");
             break;
          case "Upper Landing": 
             textArea.append("The small landing is illuminated by a skylight directly above the staircase leading back down to the Living Room.\nGazing down the stairs into the dimly lit Living Room sends a shiver down your spine, though you can clearly see nobody at the bottom of the stairs, you can't escape the sensation of being watched from below.\nA small love seat lies along the west wall adjacent to a bookshelf, across from the chair is a dark wooden door with several marks seemingly carved into it by an animal.\n");
@@ -173,7 +173,7 @@ public class Map{
             textArea.append("The Dining Room has a long wooden table in the center, with a handful of chairs toppled over onto their side; save for two on either end of the table.\nAside from the disheveled nature of the scene, the north and south walls have several pictures all perfectly aligned.\nThe east wall alone has a light brown wooden door, the Pantry. Across from the Pantry, back the way you came, sits the Kitchen.\n");
             break;
          case "Pantry": 
-            textArea.append("The Pantry is lined with shelving covered in sealed boxes. A single lightbulb hangs low from the cieling, and after fumbling along the wall you flip the switch to illuminate the room better.\nOther than several dozen boxes and a number of empty water gallons, the pantry seems to hold nothing of consequence as far as you can see.\n");
+            textArea.append("The Pantry is lined with shelving covered in sealed boxes. A single lightbulb hangs low from the cieling, and after fumbling along the wall you flip the switch to illuminate the room better.\nOther than several dozen boxes and a number of empty water gallons, the pantry seems to hold nothing of consequence as far as you can see. You feel a drip of water land on your head, and you quickly look up to the cieling. There above you is a damp black spot, occasionally driping water; it's clear there's some kind of water leak on the second floor...\n");
             break;
          case "Kitchen": 
             textArea.append("The kitchen has cabinets and black granite countertops lining the north and west walls.\nA light wooden door sits to the south with no door handle visible, it was the door to the Living Room.\nA rounded table is at the center of the kitchen with several pieces of paper atop it.\nAfter rummaging through the drawers, cabinets, and the fridge, you find nothing of use save for a handfull of spoons that hardly seem worthwhile in taking.\n");
@@ -182,7 +182,11 @@ public class Map{
             textArea.append("The dimly lit Living Room has a large flat screen TV on the south wall, to the right of the TV is a gaping hole leading into the Garage, the edges of the hole seem smoothed down, as if from wear and tear of someone passing through it multiple times.\nAcross from the TV lies an extra long sofa with a coffee table in front of it.\nNext to the sofa is a staircase heading upwards to a dull grey light.\n");
             break;
          case "Garage": 
-            textArea.append("The two car Garage is seemingly empty save for what looks like several oil stains in the center of the concrete.\nTo the east is a window and a door surrounded by large sealed up boxes.\nThe east wall has several light switches that don't work and the door leading back to the Lower Hall.\nThe south wall has two garage doors that don't appear to be hooked up to the garage door openers, judging by the chains hanging from the lifts.\nThe north wall has numerous hooks and panels that should have been holding power tools and equipment; but sadly this wall is completely bare of tools.\nTo the left of the tool racks is a large Hole in the wall, seemingly leading to another room of the house.\n"); 
+            if(episodeNum.equals("Day 1")){
+               textArea.append("The two car Garage is seemingly empty save for what looks like several oil stains in the center of the concrete.\nTo the east is a window and a door surrounded by large sealed up boxes.\nThe east wall has several light switches that don't work and the door leading back to the Lower Hall.\nThe south wall has two garage doors that don't appear to be hooked up to the garage door openers, judging by the chains hanging from the lifts.\nThe north wall has numerous hooks and panels that should have been holding power tools and equipment; but sadly this wall is completely bare of tools.\nTo the left of the tool racks is a large Hole in the wall, seemingly leading to another room of the house.\n"); 
+            } else if(episodeNum.equals("Day 2")){
+               textArea.append("There, jutting out of the garage door, which had exploded inwards from the colision the night before, was an SUV. Its front window was severely cracked, along with some minor dents to the front half of the body. You approach the car slowly, and as your eyes adjust to the poorly lit garage, you see the driver side door ajar. Quickly you go over and open the door to find the car empty, the only signs of life being the residue of spilled coffee all over the dash.\n You crawl into the car and try to start it to no avail, after letting out a sigh you crawl in the back and try to open the trunk, which would finally allow you to leave the nightmare-like house. Alas, with all the kicking and pushing you had the energy for, the trunk wouldn't budge. Climbing back up to the front of the SUV, you spot a silver tube on the floor of the passenger side. Picking up said tube, you realize it is a flashlight, and with the press of a button it illuminates the car! Knowing you can explore the house further with the help of a light, you hop out of the crashed vehicle. \n");
+            }
             break;
          case "Study": 
             textArea.append("???");

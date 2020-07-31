@@ -163,7 +163,16 @@ public class Input extends JFrame{
          playerInventory.checkInventory();
       }
       else if(userInput.equals("Look")){
-         map.look(location, textArea);
+         map.look(location, textArea, episodeNum);
+         if(episodeNum.equals("Day 2") && location.equals("Garage")){
+            playerInventory.addFlashlight();// give the player the flashlight from the crashed car
+         }
+         if(location.equals("Lower Hall") && playerInventory.hasFlashlight()){// if they look in the lower hall with the flashlight.
+            textArea.append("Remembering your flashlight, you flick the switch and illuminate the pitch black hallway leading to the east. Along the left wall is a pale blue door, leading to the Lower Bathroom. Sitting at the end of the hallway, flanked by two large urns, is the maroon colored door leading to the Study. Gazing down the shadowy hall sends goosebumps up your arms, you feel uneasy as a slight ringing in your ears grows louder the longer you look.\n");
+         }
+         if(location.equals("Upper Bathroom")){
+            playerInventory.addItem("Lower Bathroom Key");
+         }
       } else if(userInput.equals("Location")){
          textArea.append(location);
       } else if(userInput.equals("Open door")){
@@ -179,6 +188,8 @@ public class Input extends JFrame{
          grab(textArea,userInput.substring(5));
       } else if (userInput.contains("Unlock")){
          unlock(textArea, userInput.substring(7));
+      } else if(userInput.contains("Open Book") || userInput.contains("Read Book")){
+         read(textArea);
       }
       
       
@@ -186,6 +197,18 @@ public class Input extends JFrame{
          textArea.append( "I can't \"" + userInput + "\"\n");
       
    }//end of check input 
+
+   public void read(JTextArea textArea){
+      if(location.equals("Master Bedroom")){
+         textArea.append("Upon opening the dark leatherbound book, you realize it appears to be some sort of journal or diary; with each page dated. After flipping through a few pages, a brass key falls to the ground from an indent cut into several of the pages.\n You pick up the key and flip to the last pages of the journal; though some words are scribbled out you can still make out the last entry.\n 'M_ ___, it will ___ be ready soon enough, I will b_ ____ ____. Keep that in min_ and do__ feel ___ f_r __. If it wo_ks, I wi__ ____...'\n After that the writing becomes less legible, but you can barely make out the words 'I should get some food', scrawled over and over again for the next few pages.\n I should probably find out what door this key opens, or maybe I should investigate the crashed vehicle in the garage...\n");
+         playerInventory.addItem("Upper Bathroom Key");
+      } else if(location.equals("Upper Bathroom")){
+      
+      } else if(location.equals("Study")){
+         
+      }
+   
+   }
 
 
    // Method used to grab a specified item based on their current location and input.
@@ -298,6 +321,8 @@ public class Input extends JFrame{
          } else {
             changeFrame(textArea, "map_7_B.png", temp.getDescription());
          }
+      } else if(userInput.contains("Lower Bathroom") && episodeNum.equals("Day 2")){
+         Episode2.dayEnd();
       } else if(map.checkMove(location, userInput, textArea)){
          location = userInput;
          update(textArea);

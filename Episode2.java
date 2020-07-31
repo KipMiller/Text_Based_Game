@@ -35,6 +35,8 @@ public class Episode2{
             kitchen.add("Garage Key");
             kitchen.add("Ammo");
             
+
+            
             items.add(kitchen);
 
 // TODO: Add items to the master bedroom, and any other relevant items for story progression.
@@ -49,7 +51,7 @@ public class Episode2{
             
             
             Episode2 test = new Episode2();
-            test.play();// start the background music
+            //test.play();// start the background music
             
             String text = "You awake in the Master Bedroom, your head still aching from the fall. You feintly recall the growing sound of whispers the night before, but after quickly glancing around the room, you are sure you are alone for now. Looking out the window, you see the back end of the car jutting out of the garage below you, it appears to have gotten stuck halfway into the garage. \n";
             input.makeNewFrame(text, "map_12.png", 650, 220);// set the background image
@@ -68,13 +70,9 @@ public class Episode2{
             items.setEditable(false);
  
             items.setLineWrap(true);
- /*
-            items.setText("Upon entering the Master Bedroom, you pull aside the blinds and the dull grey light floods the room.\n"
-             + " Outside the window you see rows and rows of trees flanking a long gravel driveway. The grey light,\n while seemingly coming from somewhere unatural,"
-              + " grows black as feint whispers surround you. A pair of headlights appear at the end of the driveway,\n the car behind them careening down the path at breakneck speeds."
-              + " You let out a gasp as the car draws closer,\n clearly aiming to collide with the garage below you.\n Before you can get out of the master bedroom the car slams into the double garage doors and the floor beneath you shakes.\n"
-              + " You fall to the ground, hitting your head on the edge of the wooden dresser. The faint sound of whispering grows closer and closer, your eyes close tight as night falls...\n");
-   */         
+ 
+            items.setText("Walking into the bathroom from the pitch black hallway, you fumble along the walls for the lightswitch. You hear an accompanying click from the switches as you flick them up and down multiple times. Holding up your flashlight, you gaze around the bathroom, for anything that might help you out of this house; a house you have faint memories of living in...\nAs you open the cabinet underneath the sink and kneel down to look inside, the unmistakable sound of breathing. You bolt upright so fast that you hit your head on the edge of the sink; dizzy, you turn to your right and point the flashlight at the curtain surrounding the bath. As the light swpet across the plastic surface of the curtain, the sillhouette of a man became clear. He, or it, was standing perfectly still in the bath, letting a breath out at an unnatural pace. You slowly climb to your feet and debate pulling aside the curtain, instead you reach for the door handle and turn it as slow as possible. The breathing from behind the curtain stops and a rustling of the plastic indicates the man shaped being stepping out of the tub. Your drop the flashlight and use both hands to throw open the door as fast as possible, though as you pass through the threshold of the door, two strong hands grasp each of your shoulders and pull you back into the bathroom... \n");
+          
             inventory.getContentPane().add(panel1,"Center");
             panel1.add(close, BorderLayout.PAGE_END);
             panel1.add(items, BorderLayout.CENTER);
@@ -111,7 +109,7 @@ public class Episode2{
     public Clip playMusic(){
         try{
 
-            File noise = new File("BGM.wav");// TODO: Add a new song for the second day
+            File noise = new File("BGM2.wav");
             Clip bgm = AudioSystem.getClip();
             AudioInputStream stream = AudioSystem.getAudioInputStream(noise);
             bgm.open(stream);

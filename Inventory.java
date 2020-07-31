@@ -58,6 +58,14 @@ public class Inventory {
       
       }
 
+      public void addFlashlight(){
+         flashlight = 1;
+      }
+      
+      public boolean hasFlashlight(){
+         return (flashlight == 1);
+      }
+
       // given our targeted room, if we have a key that can open that door, return true and remove the key
       public boolean validKey(String destination){
          for(int i = 0; i < keys.size(); i++){
@@ -69,6 +77,7 @@ public class Inventory {
          }
          return false; 
       }
+      
       
       
       public void makeString(){
