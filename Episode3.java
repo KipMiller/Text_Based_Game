@@ -1,6 +1,6 @@
 // Author: Chris Miller
-// Date: 6/19/2020
-// Episode 2 class
+// Date: 8/3/2020
+// Episode 3 class
 
 import java.lang.*;
 import javax.swing.*;
@@ -17,11 +17,11 @@ import java.net.*;
 import javax.sound.sampled.*;
 
 
-public class Episode2{
+public class Episode3{
       
       public static void main(String[] args){
 
-            String location = "Master Bedroom";// the current location of the player
+            String location = "Garage";// the current location of the player
             Inventory playerInventory = new Inventory();
             ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
             
@@ -38,32 +38,30 @@ public class Episode2{
 
             
             items.add(kitchen);
-
-            boolean[] visits = {true,true,false,false,true,false,true,true,true,true,true,false,false,true,false,true,true};
-            boolean[] locks = {false,false,true,true,false,true,false,false,false,false,false,true,true,false,false,false,false};
+            
+            boolean[] visits = {true,true,true,false,true,false,true,true,true,true,true,false,true,true,true,true,true};
+            boolean[] locks = {false,false,false,true,false,true,false,false,false,false,false,true,false,false,false,false,false};
             
             
             Map theMap = new Map(items,visits,locks);
-            Input input = new Input("Day 2", playerInventory, location, theMap); 
-            
-            //theMap.getLocation("Pantry").setLocked();// unlock the pantry for episode 2 
+            Input input = new Input("Day ?", playerInventory, location, theMap); 
             
             
-            Episode2 test = new Episode2();
-            test.play();// start the background music
+            Episode3 test = new Episode3();
+            //test.play();// start the background music
             
-            String text = "You awake in the Master Bedroom, your head still aching from the fall. You feintly recall the growing sound of whispers the night before, but after quickly glancing around the room, you are sure you are alone for now. Looking out the window, you see the back end of the car jutting out of the garage below you, it appears to have gotten stuck halfway into the garage. \n";
-            input.makeNewFrame(text, "map_12.png", 650, 220);// set the background image, text, and the location of the player dot
+            String text = "You awake in a large vehicle, behind the wheel; seatbelt wrapped tightly across your chest. As a dull pain in your head fades away, you recognize the vehicle as the one that collided with the house earlier. A faint glint of gray light flashes in through the window of the car and you realize that someone dragged you from the bathroom back to the garage and placed you in the car. You rub your eyes and unbuckle yourself, turning around to see if the trunk is still sealed shut; it is. You climb out of the car and both feet splash into a small puddle. The dull gray light, growing darker by the minute, reflects off of multiple puddles throughout the garage. In order for this much water to have accumulated in the garage, you know that some time has passed, something feels off... \n";
+            input.makeNewFrame(text, "map_15.png",480, 480);// set the background image, text, and the location of the player dot
       }
       
       // The series of events caused upon finishing the second day.
       public static void dayEnd(){      
-            JFrame inventory = new JFrame ("Day 2 End");
+            JFrame inventory = new JFrame ("End");
             JPanel panel1 = new JPanel(new BorderLayout());
             inventory.setSize(600,400);
             inventory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             inventory.setLocationRelativeTo(null);
-            JButton close = new JButton("Main Menu");
+            JButton close = new JButton("Exit");
             
             JTextArea items = new JTextArea(30,30);// displays the text for the current frame, can be updated with setText
             items.setEditable(false);

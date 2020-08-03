@@ -93,12 +93,12 @@ public class Game {
             }
       });         
       
-      day3.addActionListener(new ActionListener(){// action button for 'Day 3' 
+      day3.addActionListener(new ActionListener(){// action button for 'Day ?' 
             @Override
             public void actionPerformed(ActionEvent e){
                   mainMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                   mainMenu.dispatchEvent(new WindowEvent(mainMenu, WindowEvent.WINDOW_CLOSING));
-                  //Episode2.main(args);// go into the episode 2 main function
+                  Episode3.main(args);// go into the episode 2 main function
             }
       }); 
                  

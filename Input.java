@@ -48,7 +48,8 @@ public class Input extends JFrame{
      ImageIcon background = new ImageIcon("map_complete.png");
      labelB.setIcon(background);
      
-     
+     labelB.setOpaque(true);
+     labelB.setBackground(Color.red);
      
      JLabel player = new JLabel();
      player.setBounds(400, 500, 10, 10);
@@ -83,7 +84,7 @@ public class Input extends JFrame{
          frame1.setLocationRelativeTo(null);
 
          JTextField textField = new JTextField(40);
-
+         
                       
          JTextArea textArea = new JTextArea(8,200);// displays the text for the current frame, can be updated with setText
          JScrollPane scrolling = new JScrollPane(textArea);
@@ -122,10 +123,31 @@ public class Input extends JFrame{
   
          // Using layered pane for the top panel so that there can be a player dot indicating location atop the map
          JLayeredPane pane = getLayeredPane();
+         
+         
          pane.setSize(1200,900);
+         
+         
+         
+         
          label.setBounds(200, -100, 1200, 900);
          ImageIcon background = new ImageIcon(backgroundImage);
          label.setIcon(background);
+          
+         if(episodeNum.equals("Day 2")){
+            label.setOpaque(true);
+            label.setBackground(Color.gray);  
+            pane.setOpaque(true);
+            pane.setBackground(Color.gray);
+         }  
+         if(episodeNum.equals("Day ?")){
+           
+            label.setOpaque(true);
+            label.setBackground(Color.black);  
+            pane.setOpaque(true);
+            pane.setBackground(Color.black);
+         
+         }
            
          player.setBounds(playerX, playerY, 10, 10);// player X and player Y will determine the location of the player dot 
          ImageIcon playerIcon = new ImageIcon("playerDot.png");
@@ -163,15 +185,19 @@ public class Input extends JFrame{
          playerInventory.checkInventory();
       }
       else if(userInput.equals("Look")){
-         map.look(location, textArea, episodeNum);
-         if(episodeNum.equals("Day 2") && location.equals("Garage")){
-            playerInventory.addFlashlight();// give the player the flashlight from the crashed car
-         }
-         if(location.equals("Lower Hall") && playerInventory.hasFlashlight()){// if they look in the lower hall with the flashlight.
-            textArea.append("Remembering your flashlight, you flick the switch and illuminate the pitch black hallway leading to the east. Along the left wall is a pale blue door, leading to the Lower Bathroom. Sitting at the end of the hallway, flanked by two large urns, is the maroon colored door leading to the Study. Gazing down the shadowy hall sends goosebumps up your arms, you feel uneasy as a slight ringing in your ears grows louder the longer you look.\n");
-         }
-         if(location.equals("Upper Bathroom")){
-            playerInventory.addItem("Lower Bathroom Key");
+         if(episodeNum.equals("Day 3")){// the final day has an alternate look command
+            map.look2(location,textArea,episodeNum);
+         } else {
+            map.look(location, textArea, episodeNum);
+            if(episodeNum.equals("Day 2") && location.equals("Garage")){
+               playerInventory.addFlashlight();// give the player the flashlight from the crashed car
+            }
+            if(location.equals("Lower Hall") && playerInventory.hasFlashlight()){// if they look in the lower hall with the flashlight.
+               textArea.append("Remembering your flashlight, you flick the switch and illuminate the pitch black hallway leading to the east. Along the left wall is a pale blue door, leading to the Lower Bathroom. Sitting at the end of the hallway, flanked by two large urns, is the maroon colored door leading to the Study. Gazing down the shadowy hall sends goosebumps up your arms, you feel uneasy as a slight ringing in your ears grows louder the longer you look.\n");
+            }
+            if(location.equals("Upper Bathroom")){
+               playerInventory.addItem("Lower Bathroom Key");
+            }
          }
       } else if(userInput.equals("Location")){
          textArea.append(location);

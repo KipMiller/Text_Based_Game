@@ -48,7 +48,7 @@ public class Episode1 {
             test.play();// start the background music
             
             String text = "You awake in a small bedroom which is scarcely furnished. You see around you a bed, a closet, and a nighstand. \n";
-            input.makeNewFrame(text, "map_4.png", 860, 245);// set the background image
+            input.makeNewFrame(text, "map_4.png", 860, 245);// set the background image, text, and the location of the player dot
       }
       
       // The series of events caused upon finishing the first day.
@@ -79,6 +79,7 @@ public class Episode1 {
                   public void actionPerformed(ActionEvent e){
                         inventory.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         inventory.dispatchEvent(new WindowEvent(inventory, WindowEvent.WINDOW_CLOSING));
+                        System.exit(0);
                         //String[] args = {"","",""};
                         //Game.main(args);
                         // TODO: Get the main menu working on close
