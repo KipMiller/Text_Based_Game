@@ -40,7 +40,7 @@ public class Episode3{
             items.add(kitchen);
             
             boolean[] visits = {true,true,true,false,true,false,true,true,true,true,true,false,true,true,true,true,true};
-            boolean[] locks = {false,false,false,true,false,true,false,false,false,false,false,true,false,false,false,false,false};
+            boolean[] locks = {false,false,false,false,false,true,false,false,false,false,false,true,false,false,false,false,false};
             
             
             Map theMap = new Map(items,visits,locks);
@@ -50,7 +50,7 @@ public class Episode3{
             Episode3 test = new Episode3();
             //test.play();// start the background music
             
-            String text = "You awake in a large vehicle, behind the wheel; seatbelt wrapped tightly across your chest. As a dull pain in your head fades away, you recognize the vehicle as the one that collided with the house earlier. A faint glint of gray light flashes in through the window of the car and you realize that someone dragged you from the bathroom back to the garage and placed you in the car. You rub your eyes and unbuckle yourself, turning around to see if the trunk is still sealed shut; it is. You climb out of the car and both feet splash into a small puddle. The dull gray light, growing darker by the minute, reflects off of multiple puddles throughout the garage. In order for this much water to have accumulated in the garage, you know that some time has passed, something feels off... \n";
+            String text = "You awake in a large vehicle, behind the wheel; seatbelt wrapped tightly across your chest. As a dull pain in your head fades away, you recognize the vehicle as the one that collided with the house earlier. \nA faint glint of gray light flashes in through the window of the car and you realize that someone dragged you from the bathroom back to the garage and placed you in the car. \nYou rub your eyes and unbuckle yourself, turning around to see if the trunk is still sealed shut; it is. You climb out of the car and both feet splash into a small puddle.\nThe dull gray light, growing darker by the minute, reflects off of multiple puddles throughout the garage. In order for this much water to have accumulated in the garage, you know that some time has passed,\n something feels off... \n";
             input.makeNewFrame(text, "map_15.png",480, 480);// set the background image, text, and the location of the player dot
       }
       
@@ -107,7 +107,7 @@ public class Episode3{
     public Clip playMusic(){
         try{
 
-            File noise = new File("BGM2.wav");
+            File noise = new File("BGM3.wav");
             Clip bgm = AudioSystem.getClip();
             AudioInputStream stream = AudioSystem.getAudioInputStream(noise);
             bgm.open(stream);

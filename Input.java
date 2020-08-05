@@ -185,7 +185,7 @@ public class Input extends JFrame{
          playerInventory.checkInventory();
       }
       else if(userInput.equals("Look")){
-         if(episodeNum.equals("Day 3")){// the final day has an alternate look command
+         if(episodeNum.equals("Day ?")){// the final day has an alternate look command
             map.look2(location,textArea,episodeNum);
          } else {
             map.look(location, textArea, episodeNum);
@@ -228,10 +228,13 @@ public class Input extends JFrame{
       if(location.equals("Master Bedroom")){
          textArea.append("Upon opening the dark leatherbound book, you realize it appears to be some sort of journal or diary; with each page dated. After flipping through a few pages, a brass key falls to the ground from an indent cut into several of the pages.\n You pick up the key and flip to the last pages of the journal; though some words are scribbled out you can still make out the last entry.\n 'M_ ___, it will ___ be ready soon enough, I will b_ ____ ____. Keep that in min_ and do__ feel ___ f_r __. If it wo_ks, I wi__ ____...'\n After that the writing becomes less legible, but you can barely make out the words 'I should get some food', scrawled over and over again for the next few pages.\n I should probably find out what door this key opens, or maybe I should investigate the crashed vehicle in the garage...\n");
          playerInventory.addItem("Upper Bathroom Key");
-      } else if(location.equals("Upper Bathroom")){
-      
       } else if(location.equals("Study")){
-         
+      
+      
+         map.getLocation("???").setLocked();// unlock the hidden room after they have gotten to the study   
+      } else if(location.equals("Library")){
+         textArea.append("You kneel down and pick up the purple book, most of the pages are stuck together, but about halfway through you find a loose page. 'What happened with the boy, I know it was all my fault; but maybe its a sign? Maybe this was supposed to happen, I was never worthy of it, I know that for sure after all of the failed rituals... But he will be worthy.' Chills run down your spine as you read, and while you don't completely understand the context, the talk of rituals and 'the boy' lead you to believe the author was speaking about you... You don't know why, but you feel like the red door at the end of the lower hall is open, what awaits you?\n");
+         map.getLocation("Study").setLocked();// unlock the study after they read the book in the library
       }
    
    }
