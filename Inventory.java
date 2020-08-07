@@ -16,7 +16,6 @@ import javax.sound.sampled.*;
 import java.net.*;
 import javax.sound.sampled.*;
 
-
 public class Inventory {
       // items of the players inventory 
       public static int ammo; 
@@ -72,14 +71,13 @@ public class Inventory {
             if(keys.get(i).contains(destination)){
                keys.remove(i);
                return true;
-               
             }
          }
          return false; 
       }
       
       
-      
+      // Method that takes the player's inventory and converts it into a displayable string
       public void makeString(){
             inventoryString = ("\t" + "Health: " + health + "\n");
             if(ammo != 0){

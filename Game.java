@@ -1,8 +1,8 @@
 // Author: Chris Miller 
 // Date Started: 6/19/2020
-// Last Updated: 6/19/2020
+// Last Updated: 8/7/2020
 //
-// Game: Working Title 
+// Game: The Gray House
 // Main driver class for the text based adventure-style game. Allows the 
 // selection of a chapter and the choosing of choices per chapter.
 
@@ -35,10 +35,10 @@ public class Game {
       JPanel startGamePanel = new JPanel();
       JPanel exitPanel = new JPanel();
       JPanel titlePanel = new JPanel();
-      JLabel title = new JLabel("Working Title");
+      JLabel title = new JLabel("The Gray House");
       
       title.setFont(new	Font("Serif",	Font.BOLD, 70));
-      title.setForeground(Color.RED);
+      title.setForeground(Color.GRAY);
       titlePanel.add(title, BorderLayout.NORTH);
       
       startGamePanel.add(day1);
@@ -58,7 +58,7 @@ public class Game {
       titlePanel.setOpaque(false);
 
       mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      mainMenu.setTitle("Working Title");
+      mainMenu.setTitle("Main Menu");
       mainMenu.setSize(500, 400);
       mainMenu.getContentPane().setBackground(Color.BLACK);
       mainMenu.add(layout, BorderLayout.PAGE_END);

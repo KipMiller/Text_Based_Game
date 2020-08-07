@@ -16,11 +16,9 @@ import javax.sound.sampled.*;
 import java.net.*;
 import javax.sound.sampled.*;
 
-
 public class Episode3{
-      
-      public static void main(String[] args){
 
+      public static void main(String[] args){
             String location = "Garage";// the current location of the player
             Inventory playerInventory = new Inventory();
             ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
@@ -28,14 +26,8 @@ public class Episode3{
             ArrayList<String> temp = new ArrayList<String>();
             temp.add("");
             
-            items.add(temp);
-            
-            
+            items.add(temp);  
             ArrayList<String> kitchen = new ArrayList<String>();
-            //kitchen.add("Garage Key");
-            //kitchen.add("Ammo");
-            
-
             
             items.add(kitchen);
             
@@ -45,10 +37,9 @@ public class Episode3{
             
             Map theMap = new Map(items,visits,locks);
             Input input = new Input("Day ?", playerInventory, location, theMap); 
-            
-            
+       
             Episode3 test = new Episode3();
-            //test.play();// start the background music
+            test.play();// start the background music
             
             String text = "You awake in a large vehicle, behind the wheel; seatbelt wrapped tightly across your chest. As a dull pain in your head fades away, you recognize the vehicle as the one that collided with the house earlier. \nA faint glint of gray light flashes in through the window of the car and you realize that someone dragged you from the bathroom back to the garage and placed you in the car. \nYou rub your eyes and unbuckle yourself, turning around to see if the trunk is still sealed shut; it is. You climb out of the car and both feet splash into a small puddle.\nThe dull gray light, growing darker by the minute, reflects off of multiple puddles throughout the garage. In order for this much water to have accumulated in the garage, you know that some time has passed,\n something feels off... \n";
             input.makeNewFrame(text, "map_15.png",480, 480);// set the background image, text, and the location of the player dot
@@ -80,23 +71,15 @@ public class Episode3{
                         inventory.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         inventory.dispatchEvent(new WindowEvent(inventory, WindowEvent.WINDOW_CLOSING));
                         System.exit(0);
-                        //String[] args = {"","",""};
-                        //Game.main(args);
-                        // TODO: Get the main menu working on close
                   }
             });
       }
-      
-      
-      
-    
 
     // Method that will call the sound alarm constructor and create the sound clip object that will be played.
     // After the sound clip has been created and started, when the user clicks the close button on the dialog
     // the sound will cease to play.
     public void play(){
         Clip bgm = this.playMusic();
-
     }
   
     /*
@@ -125,8 +108,6 @@ public class Episode3{
             System.out.println(e);
             return null;
         }
-
     }
-
 
 }// end of episode 2

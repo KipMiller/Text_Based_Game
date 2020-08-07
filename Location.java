@@ -9,12 +9,12 @@ import java.io.*;
 
 public class Location{
    String name; 
-   String[] neighbors;
+   String[] neighbors;// which rooms this room is connected to 
    String description; 
    String picture;// the name of the jpeg
-   ArrayList<String> items; 
-   boolean visited;
-   boolean locked;
+   ArrayList<String> items;// if the location has any items 
+   boolean visited;// whether or not the player has visited this room yet (for filling out the map)
+   boolean locked;// if the room is locked or not, true for locked, false unlocked
    
    public Location(String name, String[] neighbors,String description, boolean visited, boolean locked, String picture, ArrayList<String> items){
       this.name = name;

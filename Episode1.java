@@ -19,7 +19,7 @@ import javax.sound.sampled.*;
 
 // Episode 1 class
 public class Episode1 {
-      
+
       public static void main(String[] args){
             int choice = 0;// the players choice 
             String location = "Bedroom";// the current location of the player
@@ -28,13 +28,10 @@ public class Episode1 {
             
             ArrayList<String> temp = new ArrayList<String>();
             temp.add("");
-            
             items.add(temp);
-            
-            
+                        
             ArrayList<String> kitchen = new ArrayList<String>();
             kitchen.add("Garage Key");
-            kitchen.add("Ammo");
             
             items.add(kitchen);
             
@@ -80,23 +77,18 @@ public class Episode1 {
                         inventory.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         inventory.dispatchEvent(new WindowEvent(inventory, WindowEvent.WINDOW_CLOSING));
                         System.exit(0);
-                        //String[] args = {"","",""};
-                        //Game.main(args);
-                        // TODO: Get the main menu working on close
+
+                        String[] args = {"",""};
+                        Episode2.main(args);// go into the episode 2 main function
                   }
             });
       }
-      
-      
-      
-    
 
     // Method that will call the sound alarm constructor and create the sound clip object that will be played.
     // After the sound clip has been created and started, when the user clicks the close button on the dialog
     // the sound will cease to play.
     public void play(){
         Clip bgm = this.playMusic();
-
     }
   
     /*
@@ -106,13 +98,11 @@ public class Episode1 {
     */
     public Clip playMusic(){
         try{
-
             File noise = new File("BGM.wav");
             Clip bgm = AudioSystem.getClip();
             AudioInputStream stream = AudioSystem.getAudioInputStream(noise);
             bgm.open(stream);
             bgm.start();
-
            return bgm;
         // Catch all of the potential errors that come from the clip class
         } catch(UnsupportedAudioFileException e){
@@ -125,9 +115,5 @@ public class Episode1 {
             System.out.println(e);
             return null;
         }
-
-    }
-
-      
-      
+    }   
 }// end of episode 1 

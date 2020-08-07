@@ -16,11 +16,9 @@ import javax.sound.sampled.*;
 import java.net.*;
 import javax.sound.sampled.*;
 
-
 public class Episode2{
-      
-      public static void main(String[] args){
 
+      public static void main(String[] args){
             String location = "Master Bedroom";// the current location of the player
             Inventory playerInventory = new Inventory();
             ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
@@ -28,27 +26,17 @@ public class Episode2{
             ArrayList<String> temp = new ArrayList<String>();
             temp.add("");
             
-            items.add(temp);
-            
-            
+            items.add(temp);          
             ArrayList<String> kitchen = new ArrayList<String>();
-            //kitchen.add("Garage Key");
-            //kitchen.add("Ammo");
-            
-
-            
+   
             items.add(kitchen);
 
             boolean[] visits = {true,true,false,false,true,false,true,true,true,true,true,false,false,true,false,true,true};
             boolean[] locks = {false,false,true,true,false,true,false,false,false,false,false,true,true,false,false,false,false};
-            
-            
+               
             Map theMap = new Map(items,visits,locks);
             Input input = new Input("Day 2", playerInventory, location, theMap); 
-            
-            //theMap.getLocation("Pantry").setLocked();// unlock the pantry for episode 2 
-            
-            
+
             Episode2 test = new Episode2();
             test.play();// start the background music
             
@@ -69,7 +57,6 @@ public class Episode2{
             items.setEditable(false);
  
             items.setLineWrap(true);
- 
             items.setText("Walking into the bathroom from the pitch black hallway, you fumble along the walls for the lightswitch. You hear an accompanying click from the switches as you flick them up and down multiple times. Holding up your flashlight, you gaze around the bathroom, for anything that might help you out of this house; a house you have faint memories of living in...\nAs you open the cabinet underneath the sink and kneel down to look inside, the unmistakable sound of breathing. You bolt upright so fast that you hit your head on the edge of the sink; dizzy, you turn to your right and point the flashlight at the curtain surrounding the bath. As the light swpet across the plastic surface of the curtain, the sillhouette of a man became clear. He, or it, was standing perfectly still in the bath, letting a breath out at an unnatural pace. You slowly climb to your feet and debate pulling aside the curtain, instead you reach for the door handle and turn it as slow as possible. The breathing from behind the curtain stops and a rustling of the plastic indicates the man shaped being stepping out of the tub. Your drop the flashlight and use both hands to throw open the door as fast as possible, though as you pass through the threshold of the door, two strong hands grasp each of your shoulders and pull you back into the bathroom... \n");
           
             inventory.getContentPane().add(panel1,"Center");
@@ -82,16 +69,12 @@ public class Episode2{
                         inventory.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         inventory.dispatchEvent(new WindowEvent(inventory, WindowEvent.WINDOW_CLOSING));
                         System.exit(0);
-                        //String[] args = {"","",""};
-                        //Game.main(args);
-                        // TODO: Get the main menu working on close
+
+                        String[] args = {"",""};
+                        Episode2.main(args);// go into the episode 2 main function
                   }
             });
       }
-      
-      
-      
-    
 
     // Method that will call the sound alarm constructor and create the sound clip object that will be played.
     // After the sound clip has been created and started, when the user clicks the close button on the dialog
@@ -108,13 +91,11 @@ public class Episode2{
     */
     public Clip playMusic(){
         try{
-
             File noise = new File("BGM2.wav");
             Clip bgm = AudioSystem.getClip();
             AudioInputStream stream = AudioSystem.getAudioInputStream(noise);
             bgm.open(stream);
             bgm.start();
-
            return bgm;
         // Catch all of the potential errors that come from the clip class
         } catch(UnsupportedAudioFileException e){
@@ -127,8 +108,6 @@ public class Episode2{
             System.out.println(e);
             return null;
         }
-
     }
-
 
 }// end of episode 2

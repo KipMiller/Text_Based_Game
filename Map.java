@@ -8,8 +8,6 @@ import java.util.*;
 import java.io.*;
 import javax.swing.*;
 
-
-
 public class Map{
    List<Location> map;
    
@@ -134,8 +132,6 @@ public class Map{
       return false;
    }
 
-
-   
    // look command, used to further inspect a location, can give more details related to a room than an initial
    public static void look(String currLocation, JTextArea textArea, String episodeNum){
       switch(currLocation){
@@ -191,7 +187,6 @@ public class Map{
          case "Study": 
             textArea.append("???");
             break;
-      
       }
    }
    
@@ -259,12 +254,9 @@ public class Map{
          case "Study": 
             textArea.append("The small, square study is surprisingly intact with little to no water damage seeping in. A wooden desk sits squarely in the middle of the room, a leather chair pushed snugly up against the desk. Behind the desk is a window with deep red curtains pulled across; mixed with the dark gray light coming in through the window, the curtains lit up the room in a blend of deep red and gray. Paintings of abstract art adorn each of the walls, mostly shapes, right angles, and symbols of differing colors. Near the cieling, by the four corners of the room, hung black candles via silver platters jutting from the wall. A large book with what appears to be a wooden cover and spine sits wide open atop the desk...\n");
             break;
-      
       }
    }
-
-   
-   
+ 
     // method that takes the players current location and updates the player dot on the map via X / Y coordinates for each room
    public static void mapLocations(String currLocation, JLabel player ){
       switch(currLocation){
@@ -316,9 +308,7 @@ public class Map{
          case "Study": 
             player.setBounds(720, 430, 10,10);// good            
             break;
-      
       }
    }
-
 
 }// End of the Map class

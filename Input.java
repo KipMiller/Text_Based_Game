@@ -18,18 +18,16 @@ import javax.sound.sampled.*;
 import java.net.*;
 import javax.sound.sampled.*;
 
-
 public class Input extends JFrame{
    public static final int X = 1200;// constant resolution ints 
    public static final int Y = 800;
-   public static String episodeNum;
-   public static Inventory playerInventory;
-   public static String location;
+   public static String episodeNum;// which day the player is on, to trigger certain events
+   public static Inventory playerInventory;// used to keep track of what the player is holding
+   public static String location;// keep track of the player's current location
    public static JLabel label = new JLabel();// used for the background image
    public static JLabel player = new JLabel();// used for the player's location dot (sprite)
-   public Map map;
+   public Map map;// store the map variable of locations and connections
    
-
    //Constructor 
    Input(String episodeNum, Inventory playerInventory, String location, Map theMap){
       this.episodeNum = episodeNum;
@@ -37,42 +35,6 @@ public class Input extends JFrame{
       this.location = location;
       this.map = theMap;
    }
-      
-   public Input(){
-      super("LayeredPane Example");
-      JLayeredPane pane = getLayeredPane();
-      setSize(1200,900);
- 
-     JLabel labelB = new JLabel();
-     labelB.setBounds(1, 1, 1200, 900);
-     ImageIcon background = new ImageIcon("map_complete.png");
-     labelB.setIcon(background);
-     
-     labelB.setOpaque(true);
-     labelB.setBackground(Color.red);
-     
-     JLabel player = new JLabel();
-     player.setBounds(400, 500, 10, 10);
-     ImageIcon playerIcon = new ImageIcon("playerDot.png");
-     player.setIcon(playerIcon);
-
-
-     pane.setPreferredSize(new Dimension(1200, 900));
-     pane.add(labelB, new Integer(0));
-     pane.add(player, new Integer(1));
-   
-      pane.setVisible(true);
-   
-   }
-      
-      
-   public static void main(String[] args){
-      Input test = new Input();
-      test.setVisible(true);
-      
-   } 
-    
-
 
    // make new frame function, takes in the text to be displayed as a string, and the name of the background image JPEG that will be shown 
    public void makeNewFrame(String text, String backgroundImage, int playerX, int playerY){
@@ -84,7 +46,6 @@ public class Input extends JFrame{
          frame1.setLocationRelativeTo(null);
 
          JTextField textField = new JTextField(40);
-         
                       
          JTextArea textArea = new JTextArea(8,200);// displays the text for the current frame, can be updated with setText
          JScrollPane scrolling = new JScrollPane(textArea);
@@ -123,30 +84,23 @@ public class Input extends JFrame{
   
          // Using layered pane for the top panel so that there can be a player dot indicating location atop the map
          JLayeredPane pane = getLayeredPane();
-         
-         
          pane.setSize(1200,900);
-         
-         
-         
-         
+
          label.setBounds(200, -100, 1200, 900);
          ImageIcon background = new ImageIcon(backgroundImage);
          label.setIcon(background);
           
-         if(episodeNum.equals("Day 2")){
+         if(episodeNum.equals("Day 2")){// Change the color of the background for which day the player is on 
             label.setOpaque(true);
             label.setBackground(Color.gray);  
             pane.setOpaque(true);
             pane.setBackground(Color.gray);
          }  
          if(episodeNum.equals("Day ?")){
-           
             label.setOpaque(true);
             label.setBackground(Color.black);  
             pane.setOpaque(true);
             pane.setBackground(Color.black);
-         
          }
            
          player.setBounds(playerX, playerY, 10, 10);// player X and player Y will determine the location of the player dot 
@@ -161,9 +115,7 @@ public class Input extends JFrame{
 
          frame1.add(pane);
          frame1.setVisible(true);   
-          
    }// end of the make new frame function
-
 
    // Changes the background and the text area of the window 
    public static void changeFrame(JTextArea textArea, String newBackground, String newText){
@@ -171,7 +123,6 @@ public class Input extends JFrame{
       label.setIcon(background);
       textArea.setText(newText);
    }
-
 
    // Takes in user input from the keyboard and decides what to do with it. 
    public void checkInput(String userInput, JFrame frame1, JTextArea textArea){
@@ -201,9 +152,6 @@ public class Input extends JFrame{
          }
       } else if(userInput.equals("Location")){
          textArea.append(location);
-      } else if(userInput.equals("Open door")){
-         // Open a door 
-         // TODO: ? 
       } else if(userInput.contains("Go")){
          if(userInput.length() <= 2){
             textArea.append("I need to know where to go.\n");      
@@ -217,11 +165,9 @@ public class Input extends JFrame{
       } else if(userInput.contains("Open Book") || userInput.contains("Read Book")){
          read(textArea);
       }
-      
-      
+  
       else // If the user enters something we don't recognize 
-         textArea.append( "I can't \"" + userInput + "\"\n");
-      
+         textArea.append( "I can't \"" + userInput + "\"\n");  
    }//end of check input 
 
    public void read(JTextArea textArea){
@@ -229,16 +175,14 @@ public class Input extends JFrame{
          textArea.append("Upon opening the dark leatherbound book, you realize it appears to be some sort of journal or diary; with each page dated. After flipping through a few pages, a brass key falls to the ground from an indent cut into several of the pages.\n You pick up the key and flip to the last pages of the journal; though some words are scribbled out you can still make out the last entry.\n 'M_ ___, it will ___ be ready soon enough, I will b_ ____ ____. Keep that in min_ and do__ feel ___ f_r __. If it wo_ks, I wi__ ____...'\n After that the writing becomes less legible, but you can barely make out the words 'I should get some food', scrawled over and over again for the next few pages.\n I should probably find out what door this key opens, or maybe I should investigate the crashed vehicle in the garage...\n");
          playerInventory.addItem("Upper Bathroom Key");
       } else if(location.equals("Study")){
-      
-      
+         textArea.append("Leaning over the wooden-bound book, your eyes strain to read the faded ink on each page. Symbols and shapes of varying sizes cover each page from top to bottom, and as you flip through the stiff pages, you see a pattern slowly becoming clearer and clearer. Three squares with overlapping corners within a large oval, writing and shapes surrounding the main shape. This symbol, as you keep flipping through pages, grows larger and larger, clearly the author was drawing it larger and larger over time... You flip to the final page of this unnerving book and see plain writing. 'The ritual will take two of us, that much I'm sure of now. It will work with him, he has proven worthy time and time again; but what will become of me? I guess it won't really matter; but to those reading this after we are both gone. We are not dead, the boy and I, we have found a way between life and death. And to YOU, when are ready to leave (if you ever wish to), use the key...' Ringing in your ears grows louder as you read the final passage of this disturbing book, you are not sure who wrote it, what the ritual was, or how you got to this oddly familiar house, but you instinctively close the wooden-bound book. Beneath the final page and cover is a key, not a rusty metal key like all of the others; this key is a car key. Is it time to leave? Or perhaps..."); 
+         // TODO: Add the car keys to the player's inventory so they can leave
          map.getLocation("???").setLocked();// unlock the hidden room after they have gotten to the study   
       } else if(location.equals("Library")){
          textArea.append("You kneel down and pick up the purple book, most of the pages are stuck together, but about halfway through you find a loose page. 'What happened with the boy, I know it was all my fault; but maybe its a sign? Maybe this was supposed to happen, I was never worthy of it, I know that for sure after all of the failed rituals... But he will be worthy.' Chills run down your spine as you read, and while you don't completely understand the context, the talk of rituals and 'the boy' lead you to believe the author was speaking about you... You don't know why, but you feel like the red door at the end of the lower hall is open, what awaits you?\n");
          map.getLocation("Study").setLocked();// unlock the study after they read the book in the library
       }
-   
    }
-
 
    // Method used to grab a specified item based on their current location and input.
    public void grab(JTextArea textArea, String userInput){
@@ -249,7 +193,6 @@ public class Input extends JFrame{
          textArea.append("I can't grab that.\n");
       }
    }
-   
    
    // Unlock (open) one of several doors, some need keys and some are locked from one side.
    public void unlock(JTextArea textArea, String userInput){
@@ -360,13 +303,12 @@ public class Input extends JFrame{
          textArea.append("I can't go there.\n");
       }
       map.mapLocations(location, player);// update the location of the player dot after moving somewhere
-   }
+   }// end of the 'go' method
    
    
 
    // Slightly different commands if the user wants to go down/up the two staircases in the map
    public void stairs(JTextArea textArea, String userInput){
-      
       if(userInput.contains("down stairs") && location.equals("Upper Hall")){
          location = "Entrance";
       } else if(userInput.contains("down stairs") && location.equals("Landing")){
@@ -378,11 +320,5 @@ public class Input extends JFrame{
       } 
       update(textArea);
    }
-
-
-
-
-
+   
 }//end of input class 
-
-
