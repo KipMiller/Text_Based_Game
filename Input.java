@@ -137,7 +137,11 @@ public class Input extends JFrame{
       }
       else if(userInput.equals("Look")){
          if(episodeNum.equals("Day ?")){// the final day has an alternate look command
-            map.look2(location,textArea,episodeNum);
+            if(location.equals("Garage") && playerInventory.contains("Car Keys")){
+               textArea.append("You look down at the Car Keys in your hand, you long for this nightmare to end. Walking over to the crashed car, you climb in and put the key into the ignition and turn it. The SUV sputters to life as the lights and engine struggle to turn on. 'I should be able to back up the car and finally get out of this house.' The dull grey light from outside seeps in through the back window, and as you stare at the rearview mirror you cannot escape a strange feeling. Sadness, an immense wave of sadness, and almost nostalgia, sweeps over you as you contemplate leaving. Do you Leave?");
+            } else {
+               map.look2(location,textArea,episodeNum);
+            }
          } else {
             map.look(location, textArea, episodeNum);
             if(episodeNum.equals("Day 2") && location.equals("Garage")){
@@ -164,6 +168,8 @@ public class Input extends JFrame{
          unlock(textArea, userInput.substring(7));
       } else if(userInput.contains("Open Book") || userInput.contains("Read Book")){
          read(textArea);
+      } else if(userInput.contains("Leave") && location.equals("Garage") && playerInventory.contains("Car Keys")){// ending #1 
+         Episode3.dayEnd();
       }
   
       else // If the user enters something we don't recognize 
@@ -175,8 +181,9 @@ public class Input extends JFrame{
          textArea.append("Upon opening the dark leatherbound book, you realize it appears to be some sort of journal or diary; with each page dated. After flipping through a few pages, a brass key falls to the ground from an indent cut into several of the pages.\n You pick up the key and flip to the last pages of the journal; though some words are scribbled out you can still make out the last entry.\n 'M_ ___, it will ___ be ready soon enough, I will b_ ____ ____. Keep that in min_ and do__ feel ___ f_r __. If it wo_ks, I wi__ ____...'\n After that the writing becomes less legible, but you can barely make out the words 'I should get some food', scrawled over and over again for the next few pages.\n I should probably find out what door this key opens, or maybe I should investigate the crashed vehicle in the garage...\n");
          playerInventory.addItem("Upper Bathroom Key");
       } else if(location.equals("Study")){
-         textArea.append("Leaning over the wooden-bound book, your eyes strain to read the faded ink on each page. Symbols and shapes of varying sizes cover each page from top to bottom, and as you flip through the stiff pages, you see a pattern slowly becoming clearer and clearer. Three squares with overlapping corners within a large oval, writing and shapes surrounding the main shape. This symbol, as you keep flipping through pages, grows larger and larger, clearly the author was drawing it larger and larger over time... You flip to the final page of this unnerving book and see plain writing. 'The ritual will take two of us, that much I'm sure of now. It will work with him, he has proven worthy time and time again; but what will become of me? I guess it won't really matter; but to those reading this after we are both gone. We are not dead, the boy and I, we have found a way between life and death. And to YOU, when are ready to leave (if you ever wish to), use the key...' Ringing in your ears grows louder as you read the final passage of this disturbing book, you are not sure who wrote it, what the ritual was, or how you got to this oddly familiar house, but you instinctively close the wooden-bound book. Beneath the final page and cover is a key, not a rusty metal key like all of the others; this key is a car key. Is it time to leave? Or perhaps..."); 
+         textArea.append("Leaning over the wooden-bound book, your eyes strain to read the faded ink on each page. Symbols and shapes of varying sizes cover each page from top to bottom, and as you flip through the stiff pages, you see a pattern slowly becoming clearer and clearer. Three squares with overlapping corners within a large oval, writing and shapes surrounding the main shape. This symbol, as you keep flipping through pages, grows larger and larger, clearly the author was drawing it larger and larger over time... You flip to the final page of this unnerving book and see plain writing. 'The ritual will take two of us, that much I'm sure of now. It will work with him, he has proven worthy time and time again; but what will become of me? I guess it won't really matter; but to those reading this after we are both gone. We are not dead, the boy and I, we have found a way between life and death. And to YOU, when are ready to leave (if you ever wish to), use the key...' Ringing in your ears grows louder as you read the final passage of this disturbing book, you are not sure who wrote it, what the ritual was, or how you got to this oddly familiar house, but you instinctively close the wooden-bound book. Beneath the final page and cover is a key, not a rusty metal key like all of the others; this key is a car key. Is it time to leave through the trunk of the crashed car? Or perhaps..."); 
          // TODO: Add the car keys to the player's inventory so they can leave
+         playerInventory.addItem("Car Keys");// give them the key so they can leave the house (for the first ending)
          map.getLocation("???").setLocked();// unlock the hidden room after they have gotten to the study   
       } else if(location.equals("Library")){
          textArea.append("You kneel down and pick up the purple book, most of the pages are stuck together, but about halfway through you find a loose page. 'What happened with the boy, I know it was all my fault; but maybe its a sign? Maybe this was supposed to happen, I was never worthy of it, I know that for sure after all of the failed rituals... But he will be worthy.' Chills run down your spine as you read, and while you don't completely understand the context, the talk of rituals and 'the boy' lead you to believe the author was speaking about you... You don't know why, but you feel like the red door at the end of the lower hall is open, what awaits you?\n");

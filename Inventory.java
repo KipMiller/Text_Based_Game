@@ -52,6 +52,16 @@ public class Inventory {
             gun = 0;
       }
       
+      // Small method to check if the player is holding a specified key
+      public boolean contains(String key){
+         for(int i = 0; i < keys.size(); i++){
+            if(keys.get(i).equals(key)){
+               return true;
+            }   
+         }
+         return false;
+      }
+      
       public void addItem(String item){
          keys.add(item);
       
