@@ -49,7 +49,7 @@ public class Episode3{
       public static void dayEnd(String ending){      
             JFrame inventory = new JFrame ("End");
             JPanel panel1 = new JPanel(new BorderLayout());
-            inventory.setSize(600,400);
+            inventory.setSize(700,500);
             inventory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             inventory.setLocationRelativeTo(null);
             JButton close = new JButton("Exit");

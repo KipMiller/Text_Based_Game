@@ -19,7 +19,7 @@ public class Map{
        "????\n","The upper landing, a small room consisting of a staircase leading downwards and a door.\n", 
        // Downstairs
        "The entrance of the house, at the bottom of the stairs lies the front door, to your left is a large room.\n","The formal living room, being a couple sofas and decorated bookshelves.\n","The lower hall is dimly lit and consists of several doors, and a path leading to what looks like a dinging room.\n",
-       "You enter the garage, a small window across the width of the garage gives off a small amount of grey light.\nThe two car garage is empty, but boxes are stacked up high in the corner opposite you.\nTo your right is a wall lined with tools and to the left of the tool rack is what appears to be a large hole seemingly carved into the wall.\n","The Study, BOO.\n", "The lower bathroom.\n", "The dining room.\n","The Pantry.\n","The Kitchen, you see a large bronze colored key sitting on the table, it's on a piece of paper that reads 'Garage Key' written in sharpie.\n", 
+       "You enter the garage, a small window across the width of the garage gives off a small amount of grey light.\nThe two car garage is empty, but boxes are stacked up high in the corner opposite you.\nTo your right is a wall lined with tools and to the left of the tool rack is what appears to be a large hole seemingly carved into the wall.\n","The Study...\n", "The lower bathroom.\n", "The dining room.\n","The Pantry.\n","The Kitchen, you see a large bronze colored key sitting on the table, it's on a piece of paper that reads 'Garage Key' written in sharpie.\n", 
        "You crawl through the hole and see what appears to be the living room, there is a large television beside the hole you crawled through on the wall. \nA staircase going upwards sits to your left beside a window filling the room with a pale grey light. \nA door stands across the room from you adjacent to a sofa.\n"};
    
       // top floor 
@@ -29,7 +29,7 @@ public class Map{
       Location loc1 = new Location("Bedroom",n1,descriptions[0],visits[0],locks[0],"map_4.png", items.get(0));
       
       // Upper Hall
-      String[] n2 ={"Bedroom", "Library", "Upper Bathroom", "Master Bedroom", "?", "Entrance"};
+      String[] n2 ={"Bedroom", "Library", "Upper Bathroom", "Master Bedroom", "Ritual Room", "Entrance"};
       Location loc2 = new Location("Upper Hall",n2,descriptions[1],visits[1],locks[1],"map_5.png", items.get(0));
       
       // Upper Bathroom
@@ -44,9 +44,9 @@ public class Map{
       String[] n5 ={"Upper Hall", "Upper Landing"};
       Location loc5 = new Location("Master Bedroom",n5,descriptions[4],visits[4],locks[4], "map_12.png", items.get(0));
       
-      // ???
+      // Ritual Room
       String[] n6 ={"Upper Hall"};
-      Location loc6 = new Location("?",n6,descriptions[5],visits[5],locks[5], "map_17.png", items.get(0));
+      Location loc6 = new Location("Ritual Room",n6,descriptions[5],visits[5],locks[5], "map_complete.png", items.get(0));
       
       // Upper Landing
       String[] n7 ={"Master Bedroom", "Living Room"};
@@ -107,12 +107,23 @@ public class Map{
    // Returns the location variable based on the player's current location
    public Location getLocation(String currLocation){
          for(int i = 0; i < map.size(); i++){
-            if(map.get(i).getName().equals(currLocation)){
+            if(map.get(i).getName().toLowerCase().equals(currLocation.toLowerCase())){
                return map.get(i);
             }
          }
          return null;
    }
+   
+   // used to get the proper capitilized version of a locations name
+   public String locationName(String currLocation){
+         for(int i = 0; i < map.size(); i++){
+            if(map.get(i).getName().toLowerCase().equals(currLocation.toLowerCase())){
+               return map.get(i).getName();
+            }
+         }
+         return null;
+   }
+
 
    // Based on the player's current location and the location they want to move to, see if it is a valid move
    public boolean checkMove(String currLocation, String target, JTextArea textArea){
@@ -206,7 +217,7 @@ public class Map{
             //The cramped bathroom has a robin egg blue color to it, but the dull grey light coming in through the skylight fills you with unease as you look around.\nA puddle of still water has pooled around the toilet, leaking out of the sink which looks like it has been slowly dripping water for a very long time. Trying not to step in the pool of water, you stretch your arm out and turn the knob of the sink, ensuring the water is turned off. You also pull up on a level beside the sink's knob, draining the full basin of water. 'How long was this dripping?' As the stagnant water drains from the sink, you spot another key; putting it into your pocket as soon as you recognize the shape.\n");
             break;
          case "Library": 
-            textArea.append("The library is wide and the north wall is lined with two long windows. The lights don't work, but you can see the floor is littered with books, each of the east, west and south walls are lined with half empty bookshelves, most of their contents lining the hardwood floor; which, unlike the rest of the house, is devoid of puddles or mold stains. Music seems to be playing from somewhere in the house, or is it in your head?\n");
+            textArea.append("The library is wide and the north wall is lined with two long windows. The lights don't work, but you can see the floor is littered with books, each of the east, west and south walls are lined with half empty bookshelves, most of their contents lining the hardwood floor; which, unlike the rest of the house, is devoid of puddles or mold stains. A bright purple book sits leaning against the wall lined with windows...\n");
             break;
          case "Master Bedroom": 
             textArea.append("The once modern looking master bedroom looks as if a tornado had blown through; the sheets of the bed lie scattered and torn on the floor. Water damage and mold cover the walls and cieling. The long cabinet where you found the journal and several photo frames has been toppled over. Unlike the rest of the house, you feel a strange calmness eminating from the room, as if you were safe for the moment, but why? Of all the books littering the floor, one with a light purple cover catches your eye...\n");
@@ -307,6 +318,9 @@ public class Map{
             break;
          case "Study": 
             player.setBounds(720, 430, 10,10);// good            
+            break;
+         case "Ritual Room":
+            player.setBounds(750, 190, 10,10);// good            
             break;
       }
    }

@@ -30,7 +30,7 @@ public class Location{
    public boolean isNeighbor(String target){
       //System.out.println("Location's neighbors: " + neighbors);
       for(int i = 0 ; i < neighbors.length; i++){
-         if(neighbors[i].equals(target)){
+         if(neighbors[i].toLowerCase().equals(target)){
             return true;
          }
       

@@ -78,7 +78,7 @@ public class Input extends JFrame{
                      System.out.println("User input = " + userInput);
                      textField.setText("");// make the text field empty after someone hits 'enter'
                      textArea.append(">> " + userInput + "\n");
-                     checkInput(userInput, frame1, textArea);
+                     checkInput( userInput.toLowerCase(), frame1, textArea);
                }
          }); 
   
@@ -127,18 +127,22 @@ public class Input extends JFrame{
    // Takes in user input from the keyboard and decides what to do with it. 
    public void checkInput(String userInput, JFrame frame1, JTextArea textArea){
       // BASIC FUNCTIONS
-      if(userInput.equals("Quit") || userInput.equals("Close")){
+      if(userInput.equals("quit") || userInput.equals("close")){
          System.exit(0);//close the entire game 
-      } else if(userInput.equals("Help") || userInput.equals("help")){
+      } else if(userInput.equals("help")){
          textArea.append("Basic controls:\n'Inventory' - See what you are holding.\n'Look' - Examine a specific object closer.\n'Location' - Display your current location.\n'Open door' - Attempt to open a door.\n'Go' - Attempt to move from your current location.\n'Grab' - Place an item in your inventory.\n'Unlock' - Attempt to unlock a specified room with a key in your inventory.\n ");
       }
-      else if(userInput.equals("Inventory") || userInput.equals("inventory")){
+      else if(userInput.equals("inventory")){
          playerInventory.checkInventory();
       }
-      else if(userInput.equals("Look")){
+      else if(userInput.equals("look")){
          if(episodeNum.equals("Day ?")){// the final day has an alternate look command
             if(location.equals("Garage") && playerInventory.contains("Car Keys")){
                textArea.append("You look down at the Car Keys in your hand, you long for this nightmare to end. Walking over to the crashed car, you climb in and put the key into the ignition and turn it. The SUV sputters to life as the lights and engine struggle to turn on. 'I should be able to back up the car and finally get out of this house.' The dull grey light from outside seeps in through the back window, and as you stare at the rearview mirror you cannot escape a strange feeling. Sadness, an immense wave of sadness, and almost nostalgia, sweeps over you as you contemplate leaving. Do you Leave?");
+            } else if(location.equals("Upper Hall") && playerInventory.contains("Car Keys")){
+               textArea.append("You look up and down this familiar hall, stained by water damage and reeking of mold. But what stands out to you the most is the door that has been locked tight, the one you have no recollection of, is ajar. You know, somehow, that it is the door to the Ritual Room...\n");
+            } else if(location.equals("Ritual Room")){ // when the player goes into the ritual room and 'looks' they recieve the good ending
+               Episode3.dayEnd("GOOD");
             } else {
                map.look2(location,textArea,episodeNum);
             }
@@ -154,22 +158,22 @@ public class Input extends JFrame{
                playerInventory.addItem("Lower Bathroom Key");
             }
          }
-      } else if(userInput.equals("Location")){
+      } else if(userInput.equals("location")){
          textArea.append(location);
-      } else if(userInput.contains("Go")){
+      } else if(userInput.contains("go")){
          if(userInput.length() <= 2){
             textArea.append("I need to know where to go.\n");      
          } else {
             go(textArea, userInput.substring(3));
          }
-      } else if(userInput.contains("Grab")){
+      } else if(userInput.contains("grab")){
          grab(textArea,userInput.substring(5));
-      } else if (userInput.contains("Unlock")){
+      } else if (userInput.contains("unlock")){
          unlock(textArea, userInput.substring(7));
-      } else if(userInput.contains("Open Book") || userInput.contains("Read Book")){
+      } else if(userInput.contains("open book") || userInput.contains("read book")){
          read(textArea);
-      } else if(userInput.contains("Leave") && location.equals("Garage") && playerInventory.contains("Car Keys")){// ending #1 
-         Episode3.dayEnd();
+      } else if(userInput.contains("leave") && location.equals("Garage") && playerInventory.contains("Car Keys")){// ending #1 
+         Episode3.dayEnd("BAD");
       }
   
       else // If the user enters something we don't recognize 
@@ -181,12 +185,12 @@ public class Input extends JFrame{
          textArea.append("Upon opening the dark leatherbound book, you realize it appears to be some sort of journal or diary; with each page dated. After flipping through a few pages, a brass key falls to the ground from an indent cut into several of the pages.\n You pick up the key and flip to the last pages of the journal; though some words are scribbled out you can still make out the last entry.\n 'M_ ___, it will ___ be ready soon enough, I will b_ ____ ____. Keep that in min_ and do__ feel ___ f_r __. If it wo_ks, I wi__ ____...'\n After that the writing becomes less legible, but you can barely make out the words 'I should get some food', scrawled over and over again for the next few pages.\n I should probably find out what door this key opens, or maybe I should investigate the crashed vehicle in the garage...\n");
          playerInventory.addItem("Upper Bathroom Key");
       } else if(location.equals("Study")){
-         textArea.append("Leaning over the wooden-bound book, your eyes strain to read the faded ink on each page. Symbols and shapes of varying sizes cover each page from top to bottom, and as you flip through the stiff pages, you see a pattern slowly becoming clearer and clearer. Three squares with overlapping corners within a large oval, writing and shapes surrounding the main shape. This symbol, as you keep flipping through pages, grows larger and larger, clearly the author was drawing it larger and larger over time... You flip to the final page of this unnerving book and see plain writing. 'The ritual will take two of us, that much I'm sure of now. It will work with him, he has proven worthy time and time again; but what will become of me? I guess it won't really matter; but to those reading this after we are both gone. We are not dead, the boy and I, we have found a way between life and death. And to YOU, when are ready to leave (if you ever wish to), use the key...' Ringing in your ears grows louder as you read the final passage of this disturbing book, you are not sure who wrote it, what the ritual was, or how you got to this oddly familiar house, but you instinctively close the wooden-bound book. Beneath the final page and cover is a key, not a rusty metal key like all of the others; this key is a car key. Is it time to leave through the trunk of the crashed car? Or perhaps..."); 
+         textArea.append("Leaning over the wooden-bound book, your eyes strain to read the faded ink on each page. Symbols and shapes of varying sizes cover each page from top to bottom, and as you flip through the stiff pages, you see a pattern slowly becoming clearer and clearer. Three squares with overlapping corners within a large oval, writing and shapes surrounding the main shape. This symbol, as you keep flipping through pages, grows larger and larger, clearly the author was drawing it larger and larger over time... You flip to the final page of this unnerving book and see plain writing. 'The ritual will take two of us, that much I'm sure of now. It will work with him, he has proven worthy time and time again; but what will become of me? I guess it won't really matter; but to those reading this after we are both gone. We are not dead, the boy and I, we have found a way between life and death. And to YOU, when are ready to leave (if you ever wish to), use the key...' Ringing in your ears grows louder as you read the final passage of this disturbing book, you are not sure who wrote it, what the ritual was, or how you got to this oddly familiar house, but you instinctively close the wooden-bound book. Beneath the final page and cover is a key, not a rusty metal key like all of the others; this key is a car key. Is it time to leave by moving the crashed car? Or perhaps..."); 
          // TODO: Add the car keys to the player's inventory so they can leave
          playerInventory.addItem("Car Keys");// give them the key so they can leave the house (for the first ending)
-         map.getLocation("???").setLocked();// unlock the hidden room after they have gotten to the study   
+         map.getLocation("Ritual Room").setLocked();// unlock the hidden room after they have gotten to the study   
       } else if(location.equals("Library")){
-         textArea.append("You kneel down and pick up the purple book, most of the pages are stuck together, but about halfway through you find a loose page. 'What happened with the boy, I know it was all my fault; but maybe its a sign? Maybe this was supposed to happen, I was never worthy of it, I know that for sure after all of the failed rituals... But he will be worthy.' Chills run down your spine as you read, and while you don't completely understand the context, the talk of rituals and 'the boy' lead you to believe the author was speaking about you... You don't know why, but you feel like the red door at the end of the lower hall is open, what awaits you?\n");
+         textArea.append("You kneel down and pick up the purple book, most of the pages are stuck together, but about halfway through you find a loose page. 'What happened with the boy, I know it was all my fault; but maybe its a sign? Maybe this was supposed to happen, I was never worthy of it, I know that for sure after all of the failed rituals... But he will be worthy.' Chills run down your spine as you read, and while you don't completely understand the context, the talk of rituals and 'the boy' lead you to believe the author was speaking about you... You don't know why, but you feel like the Study at the end of the lower hall is open, what awaits you?\n");
          map.getLocation("Study").setLocked();// unlock the study after they read the book in the library
       }
    }
@@ -241,14 +245,14 @@ public class Input extends JFrame{
       } else if(userInput.contains("hole") && location.equals("Garage")){ // if they want to go through the hole in the garage
          location = "Living Room";
          update(textArea);
-      } else if(userInput.contains("Master Bedroom") && location.equals("Upper Landing")){// if they are on the upper landing and go into the master bedroom
+      } else if(userInput.contains("master bedroom") && location.equals("Upper Landing")){// if they are on the upper landing and go into the master bedroom
          location = "Master Bedroom";
          update(textArea);
          if(episodeNum.equals("Day 1")){// if it is day 1, they have finished the first day by getting to the master bedroom
             Episode1.dayEnd();   
          }
-      }else if(userInput.contains("Lower Hall") && !map.getLocation("Lower Hall").isVisited()){// lower hall with either formal living room visited or not 
-         location = userInput;
+      }else if(userInput.contains("lower hall") && !map.getLocation("Lower Hall").isVisited()){// lower hall with either formal living room visited or not 
+         location = map.locationName(userInput);
          Location temp = map.getLocation(location);
          temp.setVisited();
          
@@ -257,8 +261,8 @@ public class Input extends JFrame{
          } else {
             changeFrame(textArea, "map_7_A.png", temp.getDescription());
          }
-      } else if(userInput.contains("Kitchen") && !map.getLocation("Kitchen").isVisited()){
-         location = userInput;
+      } else if(userInput.contains("kitchen") && !map.getLocation("Kitchen").isVisited()){
+         location = map.locationName(userInput);
          Location temp = map.getLocation(location);
          temp.setVisited();
          
@@ -271,8 +275,8 @@ public class Input extends JFrame{
          } else{
             changeFrame(textArea, "map_8_A.png", temp.getDescription());
          }
-      } else if(userInput.contains("Dining Room") && !map.getLocation("Dining Room").isVisited()){
-         location = userInput;
+      } else if(userInput.contains("dining room") && !map.getLocation("Dining Room").isVisited()){
+         location = map.locationName(userInput);
          Location temp = map.getLocation(location);
          temp.setVisited();
          
@@ -285,8 +289,8 @@ public class Input extends JFrame{
          } else{
             changeFrame(textArea, "map_8_A.png", temp.getDescription());
          }
-      } else if(userInput.contains("Formal Living Room") && !map.getLocation(userInput).isVisited()){
-         location = userInput;
+      } else if(userInput.contains("formal living room") && !map.getLocation(userInput).isVisited()){
+         location = map.locationName(userInput);
          Location temp = map.getLocation(location);
          temp.setVisited();
          if(map.getLocation("Lower Hall").isVisited()){
@@ -300,10 +304,11 @@ public class Input extends JFrame{
          } else {
             changeFrame(textArea, "map_7_B.png", temp.getDescription());
          }
-      } else if(userInput.contains("Lower Bathroom") && episodeNum.equals("Day 2")){
+      } else if(userInput.contains("lower bathroom") && episodeNum.equals("Day 2")){
          Episode2.dayEnd();
       } else if(map.checkMove(location, userInput, textArea)){
-         location = userInput;
+         location = map.locationName(userInput);
+         Location temp = map.getLocation(location);
          update(textArea);
       
       } else {// if they entered a bad location or something 
