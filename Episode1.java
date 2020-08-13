@@ -21,7 +21,6 @@ import javax.sound.sampled.*;
 public class Episode1 {
 
       public static void main(String[] args){
-            int choice = 0;// the players choice 
             String location = "Bedroom";// the current location of the player
             Inventory playerInventory = new Inventory();
             ArrayList<ArrayList<String>> items = new ArrayList<ArrayList<String>>();
@@ -31,18 +30,18 @@ public class Episode1 {
             items.add(temp);
                         
             ArrayList<String> kitchen = new ArrayList<String>();
-            kitchen.add("Garage Key");
+            kitchen.add("Garage Key");//add the garage key to the kitchen
             
             items.add(kitchen);
             
-            boolean[] visits = {true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
-            boolean[] locks = {false,false,true,true,true,true,false,false,false,false,true,true,true,false,true,false,true};
+            boolean[] visits = {true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};// which rooms have been visited
+            boolean[] locks = {false,false,true,true,true,true,false,false,false,false,true,true,true,false,true,false,true};// which rooms are locked
             
             Map theMap = new Map(items,visits,locks);
             Input input = new Input("Day 1", playerInventory, location, theMap); 
             
             Episode1 test = new Episode1();
-            test.play();// start the background music
+            //test.play();// start the background music
             
             String text = "You awake in a small bedroom which is scarcely furnished. You see around you a bed, a closet, and a nighstand. \n";
             input.makeNewFrame(text, "map_4.png", 860, 245);// set the background image, text, and the location of the player dot
@@ -55,7 +54,7 @@ public class Episode1 {
             inventory.setSize(600,400);
             inventory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             inventory.setLocationRelativeTo(null);
-            JButton close = new JButton("Main Menu");
+            JButton close = new JButton("Day 2");
             
             JTextArea items = new JTextArea(30,30);// displays the text for the current frame, can be updated with setText
             items.setEditable(false);
@@ -76,7 +75,7 @@ public class Episode1 {
                   public void actionPerformed(ActionEvent e){
                         inventory.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         inventory.dispatchEvent(new WindowEvent(inventory, WindowEvent.WINDOW_CLOSING));
-                        System.exit(0);
+                        //System.exit(0);
 
                         String[] args = {"",""};
                         Episode2.main(args);// go into the episode 2 main function

@@ -1,10 +1,10 @@
 // Author: Chris Miller 
 // Date Started: 6/19/2020
-// Last Updated: 8/7/2020
+// Last Updated: 8/13/2020
 //
 // Game: The Gray House
 // Main driver class for the text based adventure-style game. Allows the 
-// selection of a chapter and the choosing of choices per chapter.
+// selection of a chapter.
 
 import java.lang.*;
 import javax.swing.*;
@@ -73,8 +73,7 @@ public class Game {
          public void actionPerformed(ActionEvent e){
             mainMenu.dispatchEvent(new WindowEvent(mainMenu, WindowEvent.WINDOW_CLOSING));
          }
-      });
-        
+      });  
       day1.addActionListener(new ActionListener(){// action button for 'Day 1' 
             @Override
             public void actionPerformed(ActionEvent e){
@@ -82,8 +81,7 @@ public class Game {
                   mainMenu.dispatchEvent(new WindowEvent(mainMenu, WindowEvent.WINDOW_CLOSING));
                   Episode1.main(args);// go into the episode 1 main function
             }
-      });           
-          
+      });             
       day2.addActionListener(new ActionListener(){// action button for 'Day 2' 
             @Override
             public void actionPerformed(ActionEvent e){
@@ -91,8 +89,7 @@ public class Game {
                   mainMenu.dispatchEvent(new WindowEvent(mainMenu, WindowEvent.WINDOW_CLOSING));
                   Episode2.main(args);// go into the episode 2 main function
             }
-      });         
-      
+      });           
       day3.addActionListener(new ActionListener(){// action button for 'Day ?' 
             @Override
             public void actionPerformed(ActionEvent e){
@@ -105,13 +102,8 @@ public class Game {
       while(advance != true){
             try{
                Thread.sleep(200);
-            } catch(InterruptedException e){                    
-            }
+            } catch(InterruptedException e){ }
       }
-
    }// end of main 
 
-
 }// end of class game 
-
-

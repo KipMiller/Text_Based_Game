@@ -27,18 +27,20 @@ public class Episode2{
             temp.add("");
             
             items.add(temp);          
+
             ArrayList<String> kitchen = new ArrayList<String>();
-   
+            kitchen.add("");//add the garage key to the kitchen
+            
             items.add(kitchen);
 
-            boolean[] visits = {true,true,false,false,true,false,true,true,true,true,true,false,false,true,false,true,true};
-            boolean[] locks = {false,false,true,true,false,true,false,false,false,false,false,true,true,false,false,false,false};
+            boolean[] visits = {true,true,false,false,true,false,true,true,true,true,true,false,false,true,false,true,true};// which rooms have been visited
+            boolean[] locks = {false,false,true,true,false,true,false,false,false,false,false,true,true,false,false,false,false};// which rooms are locked / unlock
                
             Map theMap = new Map(items,visits,locks);
             Input input = new Input("Day 2", playerInventory, location, theMap); 
 
             Episode2 test = new Episode2();
-            test.play();// start the background music
+            //test.play();// start the background music
             
             String text = "You awake in the Master Bedroom, your head still aching from the fall. You feintly recall the growing sound of whispers the night before, but after quickly glancing around the room, you are sure you are alone for now. Looking out the window, you see the back end of the car jutting out of the garage below you, it appears to have gotten stuck halfway into the garage. \n";
             input.makeNewFrame(text, "map_12.png", 650, 220);// set the background image, text, and the location of the player dot
@@ -51,7 +53,7 @@ public class Episode2{
             inventory.setSize(600,400);
             inventory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             inventory.setLocationRelativeTo(null);
-            JButton close = new JButton("Main Menu");
+            JButton close = new JButton("Day ?");
             
             JTextArea items = new JTextArea(30,30);// displays the text for the current frame, can be updated with setText
             items.setEditable(false);
@@ -68,10 +70,10 @@ public class Episode2{
                   public void actionPerformed(ActionEvent e){
                         inventory.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         inventory.dispatchEvent(new WindowEvent(inventory, WindowEvent.WINDOW_CLOSING));
-                        System.exit(0);
+                        //System.exit(0);
 
                         String[] args = {"",""};
-                        Episode2.main(args);// go into the episode 2 main function
+                        Episode3.main(args);// go into the episode 2 main function
                   }
             });
       }

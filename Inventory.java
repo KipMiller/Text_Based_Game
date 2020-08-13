@@ -1,5 +1,5 @@
 // Author : Chris Miller
-// 5/19/2020
+// 6/19/2020
 // Inventory class, used to keep track of items encountered by the player
 
 import java.lang.*;
@@ -62,18 +62,9 @@ public class Inventory {
          return false;
       }
       
-      public void addItem(String item){
-         keys.add(item);
-      
-      }
-
-      public void addFlashlight(){
-         flashlight = 1;
-      }
-      
-      public boolean hasFlashlight(){
-         return (flashlight == 1);
-      }
+      public void addItem(String item){ keys.add(item); }
+      public void addFlashlight(){ flashlight = 1; }
+      public boolean hasFlashlight(){ return (flashlight == 1); }
 
       // given our targeted room, if we have a key that can open that door, return true and remove the key
       public boolean validKey(String destination){
@@ -85,7 +76,6 @@ public class Inventory {
          }
          return false; 
       }
-      
       
       // Method that takes the player's inventory and converts it into a displayable string
       public void makeString(){
@@ -108,8 +98,7 @@ public class Inventory {
       }
   
       // function to pull up a new window displaying the players inventory count of items 
-      public void checkInventory(){
-            
+      public void checkInventory(){ 
             JFrame inventory = new JFrame ("Inventory");
             JPanel panel1 = new JPanel(new BorderLayout());
             inventory.setSize(400,400);
@@ -135,7 +124,5 @@ public class Inventory {
                         inventory.dispatchEvent(new WindowEvent(inventory, WindowEvent.WINDOW_CLOSING));
                   }
             });
-      }
-  
-      
+      }     
 }// end of inventory class 

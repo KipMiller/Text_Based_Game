@@ -130,7 +130,7 @@ public class Input extends JFrame{
       if(userInput.equals("quit") || userInput.equals("close")){
          System.exit(0);//close the entire game 
       } else if(userInput.equals("help")){
-         textArea.append("Basic controls:\n'Inventory' - See what you are holding.\n'Look' - Examine a specific object closer.\n'Location' - Display your current location.\n'Open door' - Attempt to open a door.\n'Go' - Attempt to move from your current location.\n'Grab' - Place an item in your inventory.\n'Unlock' - Attempt to unlock a specified room with a key in your inventory.\n ");
+         textArea.append("Basic controls:\n'Inventory' - See what you are holding.\n'Look' - Examine an area more closely.\n'Location' - Display your current location.\n'Open door' - Attempt to open a door.\n'Go ____' - Attempt to move from your current location to a specified location.\n'Grab ____' - Place a specified item in your inventory.\n'Unlock _____' - Attempt to unlock a specified room with a key in your inventory.\n'Read book' - Read a book, if you find one to read.\n ");
       }
       else if(userInput.equals("inventory")){
          playerInventory.checkInventory();
@@ -155,7 +155,7 @@ public class Input extends JFrame{
                textArea.append("Remembering your flashlight, you flick the switch and illuminate the pitch black hallway leading to the east. Along the left wall is a pale blue door, leading to the Lower Bathroom. Sitting at the end of the hallway, flanked by two large urns, is the maroon colored door leading to the Study. Gazing down the shadowy hall sends goosebumps up your arms, you feel uneasy as a slight ringing in your ears grows louder the longer you look.\n");
             }
             if(location.equals("Upper Bathroom")){
-               playerInventory.addItem("Lower Bathroom Key");
+               playerInventory.addItem("lower bathroom key");
             }
          }
       } else if(userInput.equals("location")){
@@ -183,7 +183,7 @@ public class Input extends JFrame{
    public void read(JTextArea textArea){
       if(location.equals("Master Bedroom")){
          textArea.append("Upon opening the dark leatherbound book, you realize it appears to be some sort of journal or diary; with each page dated. After flipping through a few pages, a brass key falls to the ground from an indent cut into several of the pages.\n You pick up the key and flip to the last pages of the journal; though some words are scribbled out you can still make out the last entry.\n 'M_ ___, it will ___ be ready soon enough, I will b_ ____ ____. Keep that in min_ and do__ feel ___ f_r __. If it wo_ks, I wi__ ____...'\n After that the writing becomes less legible, but you can barely make out the words 'I should get some food', scrawled over and over again for the next few pages.\n I should probably find out what door this key opens, or maybe I should investigate the crashed vehicle in the garage...\n");
-         playerInventory.addItem("Upper Bathroom Key");
+         playerInventory.addItem("upper bathroom key");
       } else if(location.equals("Study")){
          textArea.append("Leaning over the wooden-bound book, your eyes strain to read the faded ink on each page. Symbols and shapes of varying sizes cover each page from top to bottom, and as you flip through the stiff pages, you see a pattern slowly becoming clearer and clearer. Three squares with overlapping corners within a large oval, writing and shapes surrounding the main shape. This symbol, as you keep flipping through pages, grows larger and larger, clearly the author was drawing it larger and larger over time... You flip to the final page of this unnerving book and see plain writing. 'The ritual will take two of us, that much I'm sure of now. It will work with him, he has proven worthy time and time again; but what will become of me? I guess it won't really matter; but to those reading this after we are both gone. We are not dead, the boy and I, we have found a way between life and death. And to YOU, when are ready to leave (if you ever wish to), use the key...' Ringing in your ears grows louder as you read the final passage of this disturbing book, you are not sure who wrote it, what the ritual was, or how you got to this oddly familiar house, but you instinctively close the wooden-bound book. Beneath the final page and cover is a key, not a rusty metal key like all of the others; this key is a car key. Is it time to leave by moving the crashed car? Or perhaps..."); 
          // TODO: Add the car keys to the player's inventory so they can leave
@@ -197,6 +197,7 @@ public class Input extends JFrame{
 
    // Method used to grab a specified item based on their current location and input.
    public void grab(JTextArea textArea, String userInput){
+      System.out.println("Current location = " + location);
       if(map.getLocation(location).isItem(userInput)){
          textArea.append("You grab " + userInput + " and put it in your pocket.\n");
          playerInventory.addItem(userInput);
@@ -317,8 +318,6 @@ public class Input extends JFrame{
       map.mapLocations(location, player);// update the location of the player dot after moving somewhere
    }// end of the 'go' method
    
-   
-
    // Slightly different commands if the user wants to go down/up the two staircases in the map
    public void stairs(JTextArea textArea, String userInput){
       if(userInput.contains("down stairs") && location.equals("Upper Hall")){

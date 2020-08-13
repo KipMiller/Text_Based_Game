@@ -33,16 +33,15 @@ public class Location{
          if(neighbors[i].toLowerCase().equals(target)){
             return true;
          }
-      
       }
       return false;
    }
    
-   
    // Return true or false if the item the player wants to pick up is valid or not
    public boolean isItem(String item){
       for(int i = 0; i < items.size(); i++){
-         if(items.get(i).equals(item)){
+         System.out.println("Item = " + items.get(i) + " VS '" + item +"'");
+         if(items.get(i).toLowerCase().equals(item)){
             items.remove(i);// get rid of that item from the room
             return true;
          }
@@ -51,32 +50,15 @@ public class Location{
    }
 
    // Getters
-   public String getName(){
-      return name;
-   }
-   public String[] getNeighbors(){
-      return neighbors;
-   }
-
-   public boolean isVisited(){
-      return visited;
-   }
-   public boolean isLocked(){
-      return locked;
-   }
-   public String getDescription(){
-      return description;
-   }
-   public String getPicture(){
-      return picture;   
-   }
+   public String getName(){ return name; }
+   public String[] getNeighbors(){ return neighbors; }
+   public boolean isVisited(){ return visited; }
+   public boolean isLocked(){ return locked; }
+   public String getDescription(){ return description; }
+   public String getPicture(){ return picture; }
    
    // Setters
-   public void setVisited(){
-      visited = true;
-   }
-   public void setLocked(){
-      locked = false;
-   }
+   public void setVisited(){ visited = true; }
+   public void setLocked(){ locked = false; }
 
 }// End of the Map class

@@ -18,7 +18,7 @@ public class Map{
        "A dingy bathroom dimly lit by a skylight.\n","A cluttered library, each wall is lined with shelving, the floor is covered with books.\n","The master bedroom, the windows are covered with dark curtains making it impossible to see.\n", 
        "????\n","The upper landing, a small room consisting of a staircase leading downwards and a door.\n", 
        // Downstairs
-       "The entrance of the house, at the bottom of the stairs lies the front door, to your left is a large room.\n","The formal living room, being a couple sofas and decorated bookshelves.\n","The lower hall is dimly lit and consists of several doors, and a path leading to what looks like a dinging room.\n",
+       "The entrance of the house, at the bottom of the stairs lies the front door, to your left is a large room.\n","The formal living room, being a couple sofas and decorated bookshelves.\n","The lower hall is dimly lit and consists of several doors, and a path leading to what looks like a dining room and kitchen.\n",
        "You enter the garage, a small window across the width of the garage gives off a small amount of grey light.\nThe two car garage is empty, but boxes are stacked up high in the corner opposite you.\nTo your right is a wall lined with tools and to the left of the tool rack is what appears to be a large hole seemingly carved into the wall.\n","The Study...\n", "The lower bathroom.\n", "The dining room.\n","The Pantry.\n","The Kitchen, you see a large bronze colored key sitting on the table, it's on a piece of paper that reads 'Garage Key' written in sharpie.\n", 
        "You crawl through the hole and see what appears to be the living room, there is a large television beside the hole you crawled through on the wall. \nA staircase going upwards sits to your left beside a window filling the room with a pale grey light. \nA door stands across the room from you adjacent to a sofa.\n"};
    
@@ -124,7 +124,6 @@ public class Map{
          return null;
    }
 
-
    // Based on the player's current location and the location they want to move to, see if it is a valid move
    public boolean checkMove(String currLocation, String target, JTextArea textArea){
       for(int i = 0; i < map.size(); i++){
@@ -150,7 +149,7 @@ public class Map{
             textArea.append("Pale beige walls sit uncovered, with window to the south.\nWhite wooden doors conceal a closet, across from a small bed.\nA nighstand with no light atop it is next to the bed. The only door out of the room leads to the Upper Hall\n");
             break;
          case "Upper Hall": 
-            textArea.append("A long hallway on the second floor of the house, it stretches from the east to the west, with a window ending the hall to the east.\nThe bedroom sits on the south side of the hall, with three doors lining the wall opposite the bedroom door; the Upper Bathroom, Library, and a room you cannot recall, respectively.\nAt the end of the west end of the hall is a large landing with a staircase and one final door on the west wall, the door to the master bedroom.\n");
+            textArea.append("A long hallway on the second floor of the house, it stretches from the east to the west, with a window looking out on a vast wooded backyard to the north.\nThe bedroom sits on the south side of the hall, with three doors lining the wall opposite the Bedroom door; the Upper Bathroom, Library, and a room you cannot recall, respectively.\nAt the west end of the hall is a large landing with a staircase and one final door, the door to the Master Bedroom.\n");
             break;
          case "Upper Bathroom": 
             textArea.append("The cramped bathroom has a robin egg blue color to it, but the dull grey light coming in through the skylight fills you with unease as you look around.\nA puddle of still water has pooled around the toilet, leaking out of the sink which looks like it has been slowly dripping water for a very long time. Trying not to step in the pool of water, you stretch your arm out and turn the knob of the sink, ensuring the water is turned off. You also pull up on a level beside the sink's knob, draining the full basin of water. 'How long was this dripping?' As the stagnant water drains from the sink, you spot another key; putting it into your pocket as soon as you recognize the shape.\n");
@@ -162,7 +161,7 @@ public class Map{
             textArea.append("The modern looking master bedroom is sparsely decorate, save for a number of abstract paintings on the east and west walls.\nTo the south are two long windows providing a good view of the outside area.\nA long cabinet sits by the east wall next to the door to the upper hall, atop it are a number of photo frames all devoid of pictures save for one; it looks like a family photo, but the two children have their eyes closed, and the parents are frowning. Behind the photo frame appears to be a black, leather bound Book.\n");
             break;
          case "Upper Landing": 
-            textArea.append("The small landing is illuminated by a skylight directly above the staircase leading back down to the Living Room.\nGazing down the stairs into the dimly lit Living Room sends a shiver down your spine, though you can clearly see nobody at the bottom of the stairs, you can't escape the sensation of being watched from below.\nA small love seat lies along the west wall adjacent to a bookshelf, across from the chair is a dark wooden door with several marks seemingly carved into it by an animal.\n");
+            textArea.append("The small landing is illuminated by a skylight directly above the staircase leading back down to the Living Room.\nGazing down the stairs into the dimly lit Living Room sends a shiver down your spine, though you can clearly see nobody at the bottom of the stairs, you can't escape the sensation of being watched from below.\nA small love seat lies along the west wall adjacent to a bookshelf, across from the chair is a dark wooden door with several marks seemingly carved into it by an animal; it leads to the Master Bedroom...\n");
             break;
          case "Entrance": 
             textArea.append("A thick wooden door with two large glass panes sits at the bottom of the staircase on the south wall. The front door won't budge and the light switches on the wall beside the door serve no visible purpose.\nTo the east is an opening to a room with several large windows that can be seen from the front door, the Formal Living Room.\nTo the north, past the stairs, is the Lower Hall forking off in several directions.\n"); 
